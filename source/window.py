@@ -39,15 +39,15 @@ title_font = pygame.font.Font('../font/Scarville-Free.otf', 150)
 # Set window caption "Ofrenda"
 pygame.display.set_caption('Ofrenda')
 
-# Create ground_surf
+# Create ground surface
 ground_surf = pygame.Surface((width, height*ground_ratio))
 ground_surf.fill('pink4')
 
-# Create sky_surf
+# Create sky surface
 sky_surf = pygame.Surface((width, height*sky_ratio))
 sky_surf.fill('plum4')
 
-# Create title_surf
+# Create title surface
 title_surf = title_font.render('Ofrenda', False, 'hotpink4')
 title_rect = title_surf.get_rect(center=(width/2, 200))
 
@@ -64,7 +64,10 @@ player_rect = player_surf.get_rect(bottomleft=(0, ground_y_pos))
 # Define player's velocity
 player_x_vel = 4
 
-while True:
+# Initialize game window
+running = True
+
+while running:
     for event in pygame.event.get():
         # If close button has been pressed, quit PyGame
         if event.type == pygame.QUIT:
@@ -76,15 +79,19 @@ while True:
     screen.blit(ground_surf, ground_pos)
     screen.blit(title_surf, title_rect)
 
+    # If player surface reaches the right end of the screen, flip and switch direction
     if player_rect.right >= width and player_x_vel > 0:
         player_x_vel *= -1
         player_surf = pygame.transform.flip(player_surf, True, False)
+    # If player surface reaches the left end of the screen, flip and switch direction
     elif player_rect.left <= 0 and player_x_vel < 0:
         player_x_vel *= -1
         player_surf = pygame.transform.flip(player_surf, True, False)
 
+    # Make the player move
     player_rect.x += player_x_vel
 
+    # Blit the player on screen
     screen.blit(player_surf, player_rect)
 
     # Draw all elements, update everything
