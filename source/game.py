@@ -1,5 +1,6 @@
-import pygame
 from sys import exit
+
+import pygame
 
 # Initialize PyGame
 pygame.init()
@@ -37,11 +38,11 @@ clock = pygame.time.Clock()
 pygame.display.set_caption('Ofrenda')
 
 # Create ground surface
-ground_surf = pygame.Surface((width, height*ground_ratio))
+ground_surf = pygame.Surface((width, height * ground_ratio))
 ground_surf.fill('pink4')
 
 # Create sky surface
-sky_surf = pygame.Surface((width, height*sky_ratio))
+sky_surf = pygame.Surface((width, height * sky_ratio))
 sky_surf.fill('plum4')
 
 # Create and scale player
@@ -62,7 +63,7 @@ player_y_acc = 0.5
 player_x_vel = 0
 player_y_vel = 0
 
-player_x_dir =  1
+player_x_dir = 1
 
 # Initialize game window
 running = True

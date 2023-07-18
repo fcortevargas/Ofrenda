@@ -1,5 +1,6 @@
-import pygame
 from sys import exit
+
+import pygame
 
 # Initialize PyGame
 pygame.init()
@@ -40,16 +41,16 @@ title_font = pygame.font.Font('../font/Scarville-Free.otf', 150)
 pygame.display.set_caption('Ofrenda')
 
 # Create ground surface
-ground_surf = pygame.Surface((width, height*ground_ratio))
+ground_surf = pygame.Surface((width, height * ground_ratio))
 ground_surf.fill('pink4')
 
 # Create sky surface
-sky_surf = pygame.Surface((width, height*sky_ratio))
+sky_surf = pygame.Surface((width, height * sky_ratio))
 sky_surf.fill('plum4')
 
 # Create title surface
 title_surf = title_font.render('Ofrenda', False, 'hotpink4')
-title_rect = title_surf.get_rect(center=(width/2, 200))
+title_rect = title_surf.get_rect(center=(width / 2, 200))
 
 # Create and scale player
 player_surf = pygame.image.load('../graphics/characters/neutral.png').convert_alpha()
