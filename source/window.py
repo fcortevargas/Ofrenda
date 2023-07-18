@@ -11,9 +11,21 @@ height = 720  # px
 # Set game's frame rate
 framerate = 60  # Hz
 
-# Define ground and sky ratios
+# Define ground/window height ratio
 ground_ratio = 0.15
+
+# Define ground position
+ground_x_pos = 0
+ground_y_pos = height * (1 - ground_ratio)
+ground_pos = (ground_x_pos, ground_y_pos)
+
+# Define sky/window height ratio
 sky_ratio = 1 - ground_ratio
+
+# Define sky position
+sky_x_pos = 0
+sky_y_pos = 0
+sky_pos = (sky_x_pos, sky_y_pos)
 
 # Initialize window
 screen = pygame.display.set_mode((width, height))
@@ -27,28 +39,30 @@ title_font = pygame.font.Font('../font/Scarville-Free.otf', 150)
 # Set window caption "Ofrenda"
 pygame.display.set_caption('Ofrenda')
 
-# Create ground_surface
-ground_surface = pygame.Surface((width, height*ground_ratio))
-ground_surface.fill('pink4')
+# Create ground_surf
+ground_surf = pygame.Surface((width, height*ground_ratio))
+ground_surf.fill('pink4')
 
-# Create sky_surface
-sky_surface = pygame.Surface((width, height*sky_ratio))
-sky_surface.fill('plum4')
+# Create sky_surf
+sky_surf = pygame.Surface((width, height*sky_ratio))
+sky_surf.fill('plum4')
 
-# Create title_surface
-title_surface = title_font.render('Ofrenda', False, 'hotpink4')
+# Create title_surf
+title_surf = title_font.render('Ofrenda', False, 'hotpink4')
+title_rect = title_surf.get_rect(center=(width/2, 200))
 
-# Create and scale character
-character_surface = pygame.image.load('../graphics/characters/neutral.png')
-character_surface.convert()
-character_surface = pygame.transform.scale_by(character_surface, 0.25)
-character_width, character_height = character_surface.get_size()
+# Create and scale player
+player_surf = pygame.image.load('../graphics/characters/neutral.png').convert_alpha()
+player_surf = pygame.transform.scale_by(player_surf, 0.25)
 
-# Define character's position
-character_x_pos = 540
-character_y_pos = height * (1 - ground_ratio) - character_height
+# Get player dimensions
+player_width, player_height = player_surf.get_size()
 
-character_x_vel = 4
+# Get player rectangle
+player_rect = player_surf.get_rect(bottomleft=(0, ground_y_pos))
+
+# Define player's velocity
+player_x_vel = 4
 
 while True:
     for event in pygame.event.get():
@@ -58,20 +72,20 @@ while True:
             exit()
 
     # Blit surfaces on screen
-    screen.blit(sky_surface, (0, 0))
-    screen.blit(ground_surface, (0, height*(1-ground_ratio)))
-    screen.blit(title_surface, (340, 100))
+    screen.blit(sky_surf, sky_pos)
+    screen.blit(ground_surf, ground_pos)
+    screen.blit(title_surf, title_rect)
 
-    if character_x_pos >= width - character_width and character_x_vel > 0:
-        character_x_vel *= -1
-        character_surface = pygame.transform.flip(character_surface, True, False)
-    elif character_x_pos <= 0 and character_x_vel < 0:
-        character_x_vel *= -1
-        character_surface = pygame.transform.flip(character_surface, True, False)
+    if player_rect.right >= width and player_x_vel > 0:
+        player_x_vel *= -1
+        player_surf = pygame.transform.flip(player_surf, True, False)
+    elif player_rect.left <= 0 and player_x_vel < 0:
+        player_x_vel *= -1
+        player_surf = pygame.transform.flip(player_surf, True, False)
 
-    character_x_pos += character_x_vel
+    player_rect.x += player_x_vel
 
-    screen.blit(character_surface, (character_x_pos, character_y_pos))
+    screen.blit(player_surf, player_rect)
 
     # Draw all elements, update everything
     pygame.display.update()
