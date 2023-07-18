@@ -12,7 +12,7 @@ height = 720  # px
 framerate = 60  # Hz
 
 # Define ground/window height ratio
-ground_ratio = 0.15
+ground_ratio = 0.20
 
 # Define ground position
 ground_x_pos = 0
