@@ -52,10 +52,17 @@ player_surf = pygame.transform.scale_by(player_surf, 0.25)
 player_width, player_height = player_surf.get_size()
 
 # Get player rectangle
-player_rect = player_surf.get_rect(bottomleft=(0, ground_y_pos))
+player_rect = player_surf.get_rect(bottomleft=(20, ground_y_pos))
+
+# Define player's acceleration
+player_x_acc = 0
+player_y_acc = 0.5
 
 # Define player's velocity
-player_x_vel = 4
+player_x_vel = 0
+player_y_vel = 0
+
+player_x_dir =  1
 
 # Initialize game window
 running = True
@@ -67,9 +74,40 @@ while running:
             pygame.quit()
             exit()
 
+        if event.type == pygame.MOUSEBUTTONDOWN and player_rect.bottom >= ground_y_pos:
+            if player_rect.collidepoint(event.pos):
+                player_y_vel = -10
+
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_SPACE and player_rect.bottom >= ground_y_pos:
+                player_y_vel = -10
+            if event.key == pygame.K_RIGHT:
+                player_x_vel = 5
+                player_surf = pygame.transform.flip(player_surf, True, False) if player_x_dir == -1 else player_surf
+                player_x_dir = 1
+            if event.key == pygame.K_LEFT:
+                player_x_vel = -5
+                player_surf = pygame.transform.flip(player_surf, True, False) if player_x_dir == 1 else player_surf
+                player_x_dir = -1
+
+        if event.type == pygame.KEYUP:
+            if event.key == pygame.K_RIGHT or event.key == pygame.K_LEFT:
+                player_x_vel = 0
+
     # Blit surfaces on screen
     screen.blit(sky_surf, sky_pos)
     screen.blit(ground_surf, ground_pos)
+
+    # Do stuff with the player
+    player_y_vel += player_y_acc
+    player_x_vel += player_x_acc
+
+    player_rect.y += player_y_vel
+    player_rect.x += player_x_vel
+
+    if player_rect.bottom >= ground_y_pos:
+        player_rect.bottom = ground_y_pos
+        player_y_vel = 0
 
     # Blit the player on screen
     screen.blit(player_surf, player_rect)
