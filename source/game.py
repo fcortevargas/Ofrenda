@@ -46,14 +46,20 @@ sky_surf = pygame.Surface((width, height * sky_ratio))
 sky_surf.fill('plum4')
 
 # Create and scale player
-player_surf = pygame.image.load('../graphics/characters/neutral.png').convert_alpha()
-player_surf = pygame.transform.scale_by(player_surf, 0.25)
+player_surf = pygame.image.load('../graphics/characters/happy.png').convert_alpha()
+
+# Create and scale skull (enemy)
+skull_surf = pygame.image.load('../graphics/enemies/skull.png').convert_alpha()
 
 # Get player dimensions
 player_width, player_height = player_surf.get_size()
+print(player_width, player_height)
 
 # Get player rectangle
 player_rect = player_surf.get_rect(bottomleft=(20, ground_y_pos))
+
+# Get skull rectangle
+skull_rect = skull_surf.get_rect(bottomleft=(800, ground_y_pos))
 
 # Define player's acceleration
 player_x_acc = 0
@@ -67,6 +73,9 @@ player_x_dir = 1
 
 # Initialize game window
 running = True
+
+# Initialize game
+game_active = True
 
 while running:
     for event in pygame.event.get():
@@ -95,23 +104,33 @@ while running:
             if event.key == pygame.K_RIGHT or event.key == pygame.K_LEFT:
                 player_x_vel = 0
 
-    # Blit surfaces on screen
-    screen.blit(sky_surf, sky_pos)
-    screen.blit(ground_surf, ground_pos)
+    if game_active:
+        # Blit surfaces on screen
+        screen.blit(sky_surf, sky_pos)
+        screen.blit(ground_surf, ground_pos)
 
-    # Do stuff with the player
-    player_y_vel += player_y_acc
-    player_x_vel += player_x_acc
+        # Do stuff with the player
+        player_y_vel += player_y_acc
+        player_x_vel += player_x_acc
 
-    player_rect.y += player_y_vel
-    player_rect.x += player_x_vel
+        player_rect.y += player_y_vel
+        player_rect.x += player_x_vel
 
-    if player_rect.bottom >= ground_y_pos:
-        player_rect.bottom = ground_y_pos
-        player_y_vel = 0
+        if player_rect.bottom >= ground_y_pos:
+            player_rect.bottom = ground_y_pos
+            player_y_vel = 0
 
-    # Blit the player on screen
-    screen.blit(player_surf, player_rect)
+        # Blit the player on screen
+        screen.blit(player_surf, player_rect)
+
+        # Blit the skull on screen
+        screen.blit(skull_surf, skull_rect)
+
+        # Collision
+        if player_rect.colliderect(skull_rect):
+            game_active = False
+    else:
+        screen.fill('Black')
 
     # Draw all elements, update everything
     pygame.display.update()
