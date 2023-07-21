@@ -54,7 +54,6 @@ title_rect = title_surf.get_rect(center=(width / 2, 200))
 
 # Create and scale player
 player_surf = pygame.image.load('../graphics/characters/neutral.png').convert_alpha()
-player_surf = pygame.transform.scale_by(player_surf, 0.25)
 
 # Get player dimensions
 player_width, player_height = player_surf.get_size()
