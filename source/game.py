@@ -1,86 +1,57 @@
 from sys import exit
-
+from constants import *
+from player import Player
+from obstacle import Obstacle
 import pygame
+
+
+def collisions():
+    if pygame.sprite.spritecollide(player.sprite, obstacles, False):
+        player.sprite.vel_x = 0
+        player.sprite.vel_x = 0
+        player.sprite.rect.bottomleft = (PLAYER_START_X, PLAYER_START_Y)
+        obstacles.empty()
+        return False
+    else:
+        return True
+
 
 # Initialize PyGame
 pygame.init()
 
-# Set window's width and height
-width = 1080  # px
-height = 720  # px
-
-# Set game's frame rate
-framerate = 60  # Hz
-
-# Define ground/window height ratio
-ground_ratio = 0.20
-
-# Define ground position
-ground_x_pos = 0
-ground_y_pos = height * (1 - ground_ratio)
-ground_pos = (ground_x_pos, ground_y_pos)
-
-# Define sky/window height ratio
-sky_ratio = 1 - ground_ratio
-
-# Define sky position
-sky_x_pos = 0
-sky_y_pos = 0
-sky_pos = (sky_x_pos, sky_y_pos)
-
-# Initialize window
-screen = pygame.display.set_mode((width, height))
-
 # Initialize PyGame clock
 clock = pygame.time.Clock()
-
-# Set window caption "Ofrenda"
-pygame.display.set_caption('Ofrenda')
-
-# Create ground surface
-ground_surf = pygame.Surface((width, height * ground_ratio))
-ground_surf.fill('pink4')
-
-# Create sky surface
-sky_surf = pygame.Surface((width, height * sky_ratio))
-sky_surf.fill('plum4')
-
-# Create and scale player
-player_surf = pygame.image.load('../graphics/characters/neutral.png').convert_alpha()
-
-# Create and scale skull (enemy)
-skull_surf = pygame.image.load('../graphics/enemies/skull.png').convert_alpha()
-skull_surf = pygame.transform.scale_by(skull_surf, 0.5)
-
-# Get player dimensions
-player_width, player_height = player_surf.get_size()
-
-# Get player rectangle
-player_rect = player_surf.get_rect(bottomleft=(20, ground_y_pos))
-
-# Get skull rectangle
-skull_rect = skull_surf.get_rect(bottomleft=(800, ground_y_pos))
-
-# Define player's acceleration
-player_x_acc = 0
-player_y_acc = 0.5
-
-# Define player's velocity
-player_x_vel = 0
-player_y_vel = 0
-
-# Define player's direction
-player_x_dir = 1
-
-# Define skull's velocity
-skull_x_vel = -5
-skull_y_vel = 0
 
 # Initialize game window
 running = True
 
 # Initialize game
 game_active = True
+
+# Initialize window
+screen = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
+
+# Set window caption "Ofrenda"
+pygame.display.set_caption('Ofrenda')
+
+# Create ground surface
+ground_surf = pygame.Surface((GROUND_WIDTH, GROUND_HEIGHT))
+ground_surf.fill('pink4')
+
+# Create sky surface
+sky_surf = pygame.Surface((SKY_WIDTH, SKY_HEIGHT))
+sky_surf.fill('plum4')
+
+# Create player
+player = pygame.sprite.GroupSingle()
+player.add(Player())
+
+# Create obstacles
+obstacles = pygame.sprite.Group()
+
+# Obstacle imer
+obstacle_timer = pygame.USEREVENT + 1
+pygame.time.set_timer(obstacle_timer, 1500)
 
 while running:
     for event in pygame.event.get():
@@ -89,70 +60,38 @@ while running:
             pygame.quit()
             exit()
         if game_active:
-            if event.type == pygame.MOUSEBUTTONDOWN and player_rect.bottom >= ground_y_pos:
-                if player_rect.collidepoint(event.pos):
-                    player_y_vel = -12
-
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_SPACE and player_rect.bottom >= ground_y_pos:
-                    player_y_vel = -12
-                if event.key == pygame.K_RIGHT:
-                    player_x_vel = 5
-                    player_surf = pygame.transform.flip(player_surf, True, False) if player_x_dir == -1 else player_surf
-                    player_x_dir = 1
-                if event.key == pygame.K_LEFT:
-                    player_x_vel = -5
-                    player_surf = pygame.transform.flip(player_surf, True, False) if player_x_dir == 1 else player_surf
-                    player_x_dir = -1
+            if event.type == pygame.MOUSEBUTTONDOWN and player.sprite.rect.bottom >= GROUND_POS_Y:
+                if player.sprite.rect.collidepoint(event.pos):
+                    player.sprite.vel_y = -12
 
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_RIGHT or event.key == pygame.K_LEFT:
-                    player_x_vel = 0
+                    player.sprite.set_velocity(0, None)
+
+            if event.type == obstacle_timer:
+                # obstacle_rect_list.append(skull_surf.get_rect(bottomleft=(randint(1100, 1800), ground_y_pos)))
+                obstacles.add(Obstacle())
+
         else:
             if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
                 game_active = True
-                player_x_vel = 0
-                player_y_vel = 0
-                player_rect.left = 20
-                skull_rect.left = 800
-
 
     if game_active:
         # Blit surfaces on screen
-        screen.blit(sky_surf, sky_pos)
-        screen.blit(ground_surf, ground_pos)
+        screen.blit(sky_surf, (SKY_POS_X, SKY_POS_Y))
+        screen.blit(ground_surf, (GROUND_POS_X, GROUND_POS_Y))
 
-        # Do stuff with the skull
-        skull_rect.y += skull_y_vel
-        skull_rect.x += skull_x_vel
+        player.draw(screen)
+        player.update()
 
-        # If skull moves out of the screen, put it on the right
-        if skull_rect.right <= 0:
-            skull_rect.left = 1100
+        obstacles.draw(screen)
+        obstacles.update()
 
-        # Blit the skull on screen
-        screen.blit(skull_surf, skull_rect)
+        game_active = collisions()
 
-        # Do stuff with the player
-        player_y_vel += player_y_acc
-        player_x_vel += player_x_acc
-
-        player_rect.y += player_y_vel
-        player_rect.x += player_x_vel
-
-        if player_rect.bottom >= ground_y_pos:
-            player_rect.bottom = ground_y_pos
-            player_y_vel = 0
-
-        # Blit the player on screen
-        screen.blit(player_surf, player_rect)
-
-        # Collision
-        if player_rect.colliderect(skull_rect):
-            game_active = False
     else:
         screen.fill('pink4')
 
     # Draw all elements, update everything
     pygame.display.update()
-    clock.tick(framerate)
+    clock.tick(FRAMERATE)
