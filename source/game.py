@@ -46,14 +46,14 @@ sky_surf = pygame.Surface((width, height * sky_ratio))
 sky_surf.fill('plum4')
 
 # Create and scale player
-player_surf = pygame.image.load('../graphics/characters/happy.png').convert_alpha()
+player_surf = pygame.image.load('../graphics/characters/neutral.png').convert_alpha()
 
 # Create and scale skull (enemy)
 skull_surf = pygame.image.load('../graphics/enemies/skull.png').convert_alpha()
+skull_surf = pygame.transform.scale_by(skull_surf, 0.5)
 
 # Get player dimensions
 player_width, player_height = player_surf.get_size()
-print(player_width, player_height)
 
 # Get player rectangle
 player_rect = player_surf.get_rect(bottomleft=(20, ground_y_pos))
@@ -69,7 +69,12 @@ player_y_acc = 0.5
 player_x_vel = 0
 player_y_vel = 0
 
+# Define player's direction
 player_x_dir = 1
+
+# Define skull's velocity
+skull_x_vel = -5
+skull_y_vel = 0
 
 # Initialize game window
 running = True
@@ -83,31 +88,50 @@ while running:
         if event.type == pygame.QUIT:
             pygame.quit()
             exit()
+        if game_active:
+            if event.type == pygame.MOUSEBUTTONDOWN and player_rect.bottom >= ground_y_pos:
+                if player_rect.collidepoint(event.pos):
+                    player_y_vel = -12
 
-        if event.type == pygame.MOUSEBUTTONDOWN and player_rect.bottom >= ground_y_pos:
-            if player_rect.collidepoint(event.pos):
-                player_y_vel = -10
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE and player_rect.bottom >= ground_y_pos:
+                    player_y_vel = -12
+                if event.key == pygame.K_RIGHT:
+                    player_x_vel = 5
+                    player_surf = pygame.transform.flip(player_surf, True, False) if player_x_dir == -1 else player_surf
+                    player_x_dir = 1
+                if event.key == pygame.K_LEFT:
+                    player_x_vel = -5
+                    player_surf = pygame.transform.flip(player_surf, True, False) if player_x_dir == 1 else player_surf
+                    player_x_dir = -1
 
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_SPACE and player_rect.bottom >= ground_y_pos:
-                player_y_vel = -10
-            if event.key == pygame.K_RIGHT:
-                player_x_vel = 5
-                player_surf = pygame.transform.flip(player_surf, True, False) if player_x_dir == -1 else player_surf
-                player_x_dir = 1
-            if event.key == pygame.K_LEFT:
-                player_x_vel = -5
-                player_surf = pygame.transform.flip(player_surf, True, False) if player_x_dir == 1 else player_surf
-                player_x_dir = -1
-
-        if event.type == pygame.KEYUP:
-            if event.key == pygame.K_RIGHT or event.key == pygame.K_LEFT:
+            if event.type == pygame.KEYUP:
+                if event.key == pygame.K_RIGHT or event.key == pygame.K_LEFT:
+                    player_x_vel = 0
+        else:
+            if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
+                game_active = True
                 player_x_vel = 0
+                player_y_vel = 0
+                player_rect.left = 20
+                skull_rect.left = 800
+
 
     if game_active:
         # Blit surfaces on screen
         screen.blit(sky_surf, sky_pos)
         screen.blit(ground_surf, ground_pos)
+
+        # Do stuff with the skull
+        skull_rect.y += skull_y_vel
+        skull_rect.x += skull_x_vel
+
+        # If skull moves out of the screen, put it on the right
+        if skull_rect.right <= 0:
+            skull_rect.left = 1100
+
+        # Blit the skull on screen
+        screen.blit(skull_surf, skull_rect)
 
         # Do stuff with the player
         player_y_vel += player_y_acc
@@ -123,14 +147,11 @@ while running:
         # Blit the player on screen
         screen.blit(player_surf, player_rect)
 
-        # Blit the skull on screen
-        screen.blit(skull_surf, skull_rect)
-
         # Collision
         if player_rect.colliderect(skull_rect):
             game_active = False
     else:
-        screen.fill('Black')
+        screen.fill('pink4')
 
     # Draw all elements, update everything
     pygame.display.update()
