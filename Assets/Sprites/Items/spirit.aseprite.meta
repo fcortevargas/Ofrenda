@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 609847954d7f94dd69ade62524516aca
+guid: ec4d6da95dfef437493a23f5d8f04e6f
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -95,7 +95,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638277129315659410
+  platformSettingsDirtyTick: 638296341313640620
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -119,18 +119,18 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: neutral-static
+  - name: spirit
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 15
-      height: 27
-    spriteID: 8487acdc2f3a44bc092fa1c7acc066a1
+      width: 12
+      height: 12
+    spriteID: 1311017f5faf14b9fb66f855170f92d8
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -142,20 +142,20 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -506144006
-    name: neutral-static
+    guid: 1967253425
+    name: spirit
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: neutral-static
+    - name: spirit
       frameIndex: 0
       cellRect:
-        x: 9
-        y: 3
-        width: 15
-        height: 27
-      spriteId: 8487acdc2f3a44bc092fa1c7acc066a1
+        x: 10
+        y: 9
+        width: 12
+        height: 12
+      spriteId: 1311017f5faf14b9fb66f855170f92d8
     linkedCells: []
     parentIndex: -1
   platformSettings:
