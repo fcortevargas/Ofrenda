@@ -4,46 +4,93 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private Rigidbody2D playerRigidBody;    // Reference to the Rigidbody2D component of the player.
+    private Rigidbody2D playerRigidbody;            // Reference to the Rigidbody2D component of the player.
+    private SpriteRenderer playerSpriteRenderer;    // Reference to the SpriteRenderer component of the player.
 
-    private const float speed = 5.0f;       // Player movement speed.
-    private const float jumpForce = 150.0f; // Force applied to the player for jumping.
-    private const float xBoundary = 11.8f;  // Horizontal boundary for constraining player movement.
+    public float moveSpeed = 8.0f;            // Player movement speed.
+    public float jumpForce = 200.0f;          // Force applied to the player for jumping.
+    public float xBoundary = 11.8f;           // Horizontal boundary for constraining player movement.
 
-    private float horizontalInput;          // Stores the horizontal input value.
+    public float doubleJumpForceRatio = 0.5f;       // Relative intensity of the force for the second jump.
+
+    public bool isOnSurface;                        // Boolean to check if the player is on the ground.
+    public bool doubleJumpUsed;                     // Boolean to check if the player has jumped twice already.
+
+    private float horizontalInput;                  // Stores the horizontal input value.
 
     // Start is called before the first frame update
     void Start()
     {
         // Get the reference to the Rigidbody2D component attached to the player object.
-        playerRigidBody = GetComponent<Rigidbody2D>();  
+        playerRigidbody = GetComponent<Rigidbody2D>();
+
+        // Get the reference to the SpriteRenderer component attached to the player object.
+        playerSpriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
         // Call the method to handle player movement.
-        MovePlayer();
+        HandlePlayerMovement();
 
         // Call the method to keep the player within the specified boundary.
-        ConstrainPlayerPosition();  
+        ConstrainPlayerPosition();
     }
 
     // Method to handle player movement.
-    void MovePlayer()
+    void HandlePlayerMovement()
     {
         // Get the horizontal input axis value (A/D keys or Left/Right arrow keys).
-        horizontalInput = Input.GetAxis("Horizontal");  
+        horizontalInput = Input.GetAxis("Horizontal");
 
-        // Translate the player's position based on the horizontal input and the movement speed.
-        transform.Translate(horizontalInput * speed * Time.deltaTime * Vector3.right);
+        // Flip player's sprite based on horizontal input.
+        FlipSprite();
 
-        // Check if the jump input (Space key, Up Arrow key, or W key) is pressed.
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
+        // Check if the player is on the surface and adjust movement speed accordingly.
+        if (isOnSurface)
         {
-            // If so, apply an upward force to the player to make it jump.
-            playerRigidBody.AddForce(Vector3.up * jumpForce);
+            MovePlayer(moveSpeed);
         }
+        else if (!isOnSurface)
+        {
+            MovePlayer(moveSpeed * 0.5f);
+        }
+
+        // Check for jump input and perform appropriate jump action.
+        if (GetJumpKeyPressed())
+        {
+            if (isOnSurface)
+            {
+                Jump(jumpForce);
+                isOnSurface = false;
+                doubleJumpUsed = false;
+            }
+            else if (!isOnSurface && !doubleJumpUsed)
+            {
+                doubleJumpUsed = true;
+                Jump(doubleJumpForceRatio * jumpForce);
+            }
+        }
+    }
+
+    // Check if any of the jump keys (Space, UpArrow, W) are pressed.
+    bool GetJumpKeyPressed()
+    {
+        return Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W);
+    }
+
+    // Move the player based on the input and speed.
+    void MovePlayer(float speed)
+    {
+        float motion = horizontalInput * speed * Time.deltaTime;
+        transform.Translate(motion * Vector2.right);
+    }
+
+    // Apply a vertical force to make the player jump.
+    void Jump(float force)
+    {
+        playerRigidbody.AddForce(force * Vector2.up);
     }
 
     // Method to constrain the player's position within the horizontal boundary.
@@ -52,13 +99,38 @@ public class PlayerController : MonoBehaviour
         if (transform.position.x > xBoundary)
         {
             // If the player moves beyond the right boundary, set its position to the boundary's limit.
-            transform.position = new Vector3(xBoundary, transform.position.y);
+            transform.position = new Vector2(xBoundary, transform.position.y);
         }
 
         if (transform.position.x < -xBoundary)
         {
             // If the player moves beyond the left boundary, set its position to the boundary's limit.
-            transform.position = new Vector3(-xBoundary, transform.position.y);
+            transform.position = new Vector2(-xBoundary, transform.position.y);
+        }
+    }
+
+    // Flip the player sprite to face the appropriate direction.
+    void FlipSprite()
+    {
+        if (horizontalInput < 0)
+        {
+            // Flip to face left.
+            playerSpriteRenderer.flipX = true;
+        }
+        else if (horizontalInput > 0)
+        {
+            // Flip to face right.
+            playerSpriteRenderer.flipX = false;
+        }
+    }
+
+    // Method to handle collision with other objects.
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        // Check if the player is colliding with a surface.
+        if (collision.gameObject.CompareTag("Surface"))
+        {
+            isOnSurface = true;
         }
     }
 }
