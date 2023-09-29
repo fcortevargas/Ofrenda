@@ -3,19 +3,23 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Surface
+  - Spirit
+  - Background
+  - Portal
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Spirit
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Surface
+  - Player
+  - Portal
+  - Background
+  - Foreground
   - 
   - 
   - 
@@ -38,6 +42,21 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 1732298745
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Player
+    uniqueID: 3047418269
+    locked: 0
+  - name: Portal
+    uniqueID: 1532311193
+    locked: 0
+  - name: Surface
+    uniqueID: 2601390477
+    locked: 0
+  - name: Foreground
+    uniqueID: 509397369
     locked: 0
