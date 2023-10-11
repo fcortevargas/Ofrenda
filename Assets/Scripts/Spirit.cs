@@ -2,23 +2,35 @@ using System;
 using UnityEngine;
 using Pathfinding;
 
-public class SpiritAI : MonoBehaviour
+public class Spirit : MonoBehaviour
 {
     public GameObject player; // The player GameObject that the spirit is following.
     public GameObject portal; // The portal GameObject that the spirit will go to if close enough.
 
-    public float speed; // The movement speed of the spirit.
-    public float nextWaypointDistance = 3f; // The minimum distance to consider a waypoint as reached.
-    public float distanceToPortalThreshold; // The distance threshold to consider the portal as "close enough".
-    public float yDistanceToPortalThreshold; // The distance to determine if the spirit can "see" the portal.
-    public float speedToPortal; // The movement speed once the spirit "sees" the portal
+    private const float nextWaypointDistance = 1f; // The minimum distance to consider a waypoint as reached.
+    private const float yDistanceToPortalThreshold = 1f; // The distance to determine if the spirit can "see" the portal.
+    private const float distanceThreshold = 5f; // The distance threshold to trigger the faster spped
 
-    Path path; // The calculated path for the spirit to follow.
-    int currentWaypoint = 0; // The index of the current waypoint in the path.
-    //bool reachedEndOfPath = false; // Indicates if the spirit has reached the end of its path.
+    private const float normalSpeed = 150; // The normal movement speed of the spirit.
+    private const float fastSpeed = 300; // The faster movement speed of the spirit.
+
+    [SerializeField] private float speed;
+
+    private Path path; // The calculated path for the spirit to follow.
+    private int currentWaypoint = 0; // The index of the current waypoint in the path.
+    // bool reachedEndOfPath = false; // Indicates if the spirit has reached the end of its path.
 
     Seeker seeker; // A component for pathfinding calculations.
     Rigidbody2D rb; // The Rigidbody2D component for the spirit's physics.
+
+    private Target target;
+
+    private struct Target
+    {
+        public Transform transform;
+        public float distance;
+        public string type;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -47,24 +59,30 @@ public class SpiritAI : MonoBehaviour
     }
 
     // Select the closest player ghost (left or right) for the spirit to follow or the portal if it is close enough.
-    public Transform SelectTarget()
+    private Target SelectClosestTarget()
     {
+        Target closestTarget = new();
+
         Transform leftGhost = player.transform.Find("Left Ghost"); // Find the left player ghost.
         Transform rightGhost = player.transform.Find("Right Ghost"); // Find the right player ghost.
 
         // Calculate distances to both ghosts and the portal.
         float distanceToLeftGhost = Vector2.Distance(transform.position, leftGhost.position);
         float distanceToRightGhost = Vector2.Distance(transform.position, rightGhost.position);
-        float distanceToPortal = Vector2.Distance(transform.position, portal.transform.position);
 
         // Determine the closest player ghost based on distances.
-        Transform closestTarget = (distanceToLeftGhost < distanceToRightGhost) ? leftGhost : rightGhost;
+        closestTarget.transform = (distanceToLeftGhost < distanceToRightGhost) ? leftGhost : rightGhost;
+        closestTarget.distance = Math.Min(distanceToLeftGhost, distanceToRightGhost);
+        closestTarget.type = "player";
+
+        float distanceToPortal = Vector2.Distance(transform.position, portal.transform.position);
 
         // If the portal is closer than a certain 
-        if (distanceToPortal < distanceToPortalThreshold && IsPortalInView())
+        if (distanceToPortal < distanceThreshold && IsPortalInView())
         {
-            closestTarget = portal.transform;
-            speed = speedToPortal;
+            closestTarget.transform = portal.transform;
+            closestTarget.distance = distanceToPortal;
+            closestTarget.type = "portal";
         }
 
         return closestTarget;
@@ -73,10 +91,10 @@ public class SpiritAI : MonoBehaviour
     // Update the path for the spirit to follow.
     void UpdatePath()
     {
-        Transform targetTransform = SelectTarget(); // Select the closest target.
+        target = SelectClosestTarget(); // Select the closest target.
 
         if (seeker.IsDone()) // Check if the Seeker component is not currently calculating a path.
-            seeker.StartPath(rb.position, targetTransform.position, OnPathComplete); // Start calculating a path to the player.
+            seeker.StartPath(rb.position, target.transform.position, OnPathComplete); // Start calculating a path to the player.
     }
 
     // Callback function called when path calculation is complete.
@@ -98,21 +116,18 @@ public class SpiritAI : MonoBehaviour
 
         if (currentWaypoint >= path.vectorPath.Count) // Check if the spirit has reached the end of the path.
         {
-            //reachedEndOfPath = true;
             return;
-        }
-        else
-        {
-            //reachedEndOfPath = false;
         }
 
         // Calculate the direction and force needed to move towards the current waypoint.
         Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
+        speed = UpdateSpeedToTarget();
+
         Vector2 force = speed * Time.deltaTime * direction;
 
-        rb.AddForce(force); // Apply the calculated force to move the spirit.
-
         float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
+
+        rb.AddForce(force); // Apply the calculated force to move the spirit.
 
         if (distance < nextWaypointDistance) // Check if the spirit has reached the current waypoint.
         {
@@ -120,12 +135,30 @@ public class SpiritAI : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         // If spirit collides with portal, destroy gameobject.
         if (collision.gameObject.CompareTag("Portal"))
         {
             Destroy(gameObject);
+        }
+    }
+
+    private float UpdateSpeedToTarget()
+    {
+        // If the portal is the closest target.
+        if (target.type == "portal" && target.distance < distanceThreshold)
+        {
+            return fastSpeed;
+        }
+        // If the player is the closest target and the spirit is far away.
+        else if (target.type == "player" && target.distance > distanceThreshold)
+        {
+            return fastSpeed;
+        }
+        else
+        {
+            return normalSpeed;
         }
     }
 }
