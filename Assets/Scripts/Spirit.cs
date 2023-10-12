@@ -17,8 +17,8 @@ public class Spirit : MonoBehaviour
     [SerializeField] private float speed;
 
     private Path path; // The calculated path for the spirit to follow.
-    private int currentWaypoint = 0; // The index of the current waypoint in the path.
-    // bool reachedEndOfPath = false; // Indicates if the spirit has reached the end of its path.
+    [SerializeField] private int currentWaypoint = 0; // The index of the current waypoint in the path.
+    [SerializeField] bool reachedEndOfPath = false; // Indicates if the spirit has reached the end of its path.
 
     Seeker seeker; // A component for pathfinding calculations.
     Rigidbody2D rb; // The Rigidbody2D component for the spirit's physics.
@@ -116,7 +116,12 @@ public class Spirit : MonoBehaviour
 
         if (currentWaypoint >= path.vectorPath.Count) // Check if the spirit has reached the end of the path.
         {
+            reachedEndOfPath = true;
             return;
+        }
+        else
+        {
+            reachedEndOfPath = false;
         }
 
         // Calculate the direction and force needed to move towards the current waypoint.

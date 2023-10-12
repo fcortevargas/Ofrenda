@@ -68617,7 +68617,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 3846160804732495257}
   portal: {fileID: 909807747}
-  distanceToPlayerThreshold: 5
   speed: 0
 --- !u!114 &1700464431
 MonoBehaviour:
