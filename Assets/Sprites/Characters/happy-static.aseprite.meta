@@ -121,15 +121,15 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: happy-static
     originalName: 
-    pivot: {x: 0.4666667, y: -0.16}
+    pivot: {x: 0.5, y: -0.033333335}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 15
-      height: 25
+      width: 20
+      height: 30
     spriteID: 4fc223d1e58524171b6e081516c88130
     spriteBone: []
     spriteOutline: []
@@ -151,10 +151,10 @@ ScriptedImporter:
     - name: happy-static
       frameIndex: 0
       cellRect:
-        x: 9
-        y: 4
-        width: 15
-        height: 25
+        x: 6
+        y: 1
+        width: 20
+        height: 30
       spriteId: 4fc223d1e58524171b6e081516c88130
     linkedCells: []
     parentIndex: -1
