@@ -1,0 +1,1108 @@
+fileFormatVersion: 2
+guid: 06602dc5594c447e7907157d9e56d452
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  textureImporterSettings:
+    alphaSource: 1
+    mipMapMode: 0
+    enableMipMap: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+    convertToNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+    swizzle: 50462976
+    isReadable: 0
+    streamingMipmaps: 0
+    streamingMipmapsPriority: 0
+    vTOnly: 0
+    ignoreMipmapLimit: 0
+    nPOTScale: 1
+    sRGBTexture: 1
+    spriteMode: 2
+    spriteExtrude: 1
+    spriteMeshType: 1
+    alignment: 0
+    spritePivot: {x: 0.5, y: 0.5}
+    spritePixelsToUnits: 100
+    spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+    spriteGenerateFallbackPhysicsShape: 0
+    generateCubemap: 6
+    cubemapConvolution: 0
+    seamlessCubemap: 0
+    alphaIsTransparency: 1
+    spriteTessellationDetail: -1
+    textureType: 8
+    textureShape: 1
+    singleChannelComponent: 0
+    flipbookRows: 0
+    flipbookColumns: 0
+    ignorePngGamma: 0
+    cookieMode: 0
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+    normalMap: 0
+    textureFormat: 0
+    maxTextureSize: 0
+    lightmap: 0
+    compressionQuality: 0
+    linearTexture: 0
+    grayScaleToAlpha: 0
+    rGBM: 0
+    cubemapConvolutionSteps: 0
+    cubemapConvolutionExponent: 0
+    maxTextureSizeSet: 0
+    compressionQualitySet: 0
+    textureFormatSet: 0
+    applyGammaDecoding: 0
+  previousAsepriteImporterSettings:
+    fileImportMode: 1
+    importHiddenLayers: 0
+    layerImportMode: 1
+    defaultPivotSpace: 0
+    defaultPivotAlignment: 7
+    customPivotPosition: {x: 0.5, y: 0.5}
+    spritePadding: 0
+    generateModelPrefab: 1
+    generateAnimationClips: 1
+    addSortingGroup: 1
+    addShadowCasters: 0
+  asepriteImporterSettings:
+    fileImportMode: 1
+    importHiddenLayers: 0
+    layerImportMode: 1
+    defaultPivotSpace: 0
+    defaultPivotAlignment: 7
+    customPivotPosition: {x: 0.5, y: 0.5}
+    spritePadding: 0
+    generateModelPrefab: 1
+    generateAnimationClips: 1
+    addSortingGroup: 1
+    addShadowCasters: 0
+  importFileNodeState: 1
+  platformSettingsDirtyTick: 638332689262190340
+  textureAssetName: 
+  singleSpriteImportData:
+  - name: 
+    originalName: 
+    pivot: {x: 0, y: 0}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    spriteID: 
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  animatedSpriteImportData:
+  - name: fire-animated_Frame_0
+    originalName: 
+    pivot: {x: 0.5263158, y: -0.033333335}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 60
+      y: 4
+      width: 19
+      height: 30
+    spriteID: de29af37dd6e3400ba2f5922405d9643
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 60, y: 4}
+  - name: fire-animated_Frame_1
+    originalName: 
+    pivot: {x: 0.5263158, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 60
+      y: 42
+      width: 19
+      height: 30
+    spriteID: 3a048590f5a714489933f7fad814bf13
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 60, y: 42}
+  - name: fire-animated_Frame_2
+    originalName: 
+    pivot: {x: 0.5555556, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 87
+      y: 195
+      width: 18
+      height: 30
+    spriteID: a2cf5c0bd94d541679275a3f14afac46
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 87, y: 195}
+  - name: fire-animated_Frame_3
+    originalName: 
+    pivot: {x: 0.5555556, y: -0.033333335}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 114
+      y: 4
+      width: 18
+      height: 30
+    spriteID: faa6ab171e7924632abfdb2c02b9ffeb
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 114, y: 4}
+  - name: fire-animated_Frame_4
+    originalName: 
+    pivot: {x: 0.5555556, y: -0.03448276}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 114
+      y: 80
+      width: 18
+      height: 29
+    spriteID: d04f2c94eaf8e4ff894670bb83cfb712
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 114, y: 80}
+  - name: fire-animated_Frame_5
+    originalName: 
+    pivot: {x: 0.5555556, y: -0.06896552}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 114
+      y: 117
+      width: 18
+      height: 29
+    spriteID: d2ea85337b1744dbcbe3243a5e1d9f6b
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 114, y: 117}
+  - name: fire-animated_Frame_6
+    originalName: 
+    pivot: {x: 0.5294118, y: -0.06666667}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 140
+      y: 41
+      width: 17
+      height: 30
+    spriteID: 5be96ca130fe544c8a6b692cd8c17415
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 140, y: 41}
+  - name: fire-animated_Frame_7
+    originalName: 
+    pivot: {x: 0.5294118, y: -0.033333335}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 140
+      y: 79
+      width: 17
+      height: 30
+    spriteID: 30aebd4df03234433a8c5b8ce8dd7dda
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 140, y: 79}
+  - name: fire-animated_Frame_8
+    originalName: 
+    pivot: {x: 0.5555556, y: -0.033333335}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 114
+      y: 42
+      width: 18
+      height: 30
+    spriteID: ad8a3217f92cb4bb992dda966b76f9e0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 114, y: 42}
+  - name: fire-animated_Frame_9
+    originalName: 
+    pivot: {x: 0.5, y: -0.03448276}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 114
+      y: 154
+      width: 18
+      height: 29
+    spriteID: 9c115169af67e4aca860d86fd0f3d5ff
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 114, y: 154}
+  - name: fire-animated_Frame_10
+    originalName: 
+    pivot: {x: 0.47368422, y: -0.03448276}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 87
+      y: 158
+      width: 19
+      height: 29
+    spriteID: 699310eeb9df842909616939b8570d14
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 87, y: 158}
+  - name: fire-animated_Frame_11
+    originalName: 
+    pivot: {x: 0.47368422, y: -0.033333335}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 60
+      y: 80
+      width: 19
+      height: 30
+    spriteID: 50cf3c1725654496e8c6518ba8a05be6
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 60, y: 80}
+  - name: fire-animated_Frame_12
+    originalName: 
+    pivot: {x: 0.5, y: -0.033333335}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 4
+      width: 20
+      height: 30
+    spriteID: 1cd5e9683871d4c879cede23d315338d
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 4}
+  - name: fire-animated_Frame_13
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 42
+      width: 20
+      height: 30
+    spriteID: 25389bb2c9e9549af814c9c8ee314563
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 42}
+  - name: fire-animated_Frame_14
+    originalName: 
+    pivot: {x: 0.47368422, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 60
+      y: 118
+      width: 19
+      height: 30
+    spriteID: b4a1c3f51364e483eaa744e7a277f821
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 60, y: 118}
+  - name: fire-animated_Frame_15
+    originalName: 
+    pivot: {x: 0.47368422, y: -0.033333335}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 60
+      y: 156
+      width: 19
+      height: 30
+    spriteID: e03d53842e55f4d7481b7770007bd513
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 60, y: 156}
+  - name: fire-animated_Frame_16
+    originalName: 
+    pivot: {x: 0.5, y: -0.033333335}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 80
+      width: 20
+      height: 30
+    spriteID: 5d44e6c0d1bae466db8c0e941155e233
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 80}
+  - name: fire-animated_Frame_17
+    originalName: 
+    pivot: {x: 0.5, y: -0.06666667}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 118
+      width: 20
+      height: 30
+    spriteID: 3621d772b9cca4b9f8528bcb2ed8b390
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 118}
+  - name: fire-animated_Frame_18
+    originalName: 
+    pivot: {x: 0.5, y: -0.06666667}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 156
+      width: 20
+      height: 30
+    spriteID: d84d2123e7d1b4a9caf9d1f159d35205
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 156}
+  - name: fire-animated_Frame_19
+    originalName: 
+    pivot: {x: 0.5, y: -0.033333335}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 194
+      width: 20
+      height: 30
+    spriteID: be7133716a1614d13af3524669a21d5a
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 194}
+  - name: fire-animated_Frame_20
+    originalName: 
+    pivot: {x: 0.47368422, y: -0.033333335}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 60
+      y: 194
+      width: 19
+      height: 30
+    spriteID: 489a8414406ff49d29f8823c903d5fab
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 60, y: 194}
+  - name: fire-animated_Frame_21
+    originalName: 
+    pivot: {x: 0.47368422, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 87
+      y: 4
+      width: 19
+      height: 30
+    spriteID: 2541a927500494195afd2c4d264fd9bd
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 87, y: 4}
+  - name: fire-animated_Frame_22
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 32
+      y: 4
+      width: 20
+      height: 30
+    spriteID: c378d1a72fca049a892b6bf333750b46
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 32, y: 4}
+  - name: fire-animated_Frame_23
+    originalName: 
+    pivot: {x: 0.5, y: -0.033333335}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 32
+      y: 42
+      width: 20
+      height: 30
+    spriteID: 7977945b56dbf4ff894d0b2496980eb5
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 32, y: 42}
+  - name: fire-animated_Frame_24
+    originalName: 
+    pivot: {x: 0.5, y: -0.033333335}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 32
+      y: 80
+      width: 20
+      height: 30
+    spriteID: 9b661f662fd284d78a18a1b550b8e8eb
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 32, y: 80}
+  - name: fire-animated_Frame_25
+    originalName: 
+    pivot: {x: 0.5, y: -0.06666667}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 32
+      y: 118
+      width: 20
+      height: 30
+    spriteID: 33860b008e68745eabfb4271f9facfcc
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 32, y: 118}
+  - name: fire-animated_Frame_26
+    originalName: 
+    pivot: {x: 0.5, y: -0.06666667}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 32
+      y: 156
+      width: 20
+      height: 30
+    spriteID: c762d00ded856444780efb6e84cbb650
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 32, y: 156}
+  - name: fire-animated_Frame_27
+    originalName: 
+    pivot: {x: 0.5, y: -0.033333335}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 32
+      y: 194
+      width: 20
+      height: 30
+    spriteID: 723890a510faa4bc086865bfe96c0197
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 32, y: 194}
+  - name: fire-animated_Frame_28
+    originalName: 
+    pivot: {x: 0.5263158, y: -0.033333335}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 87
+      y: 42
+      width: 19
+      height: 30
+    spriteID: a744df8e60f584a21b164c2ff896e3ff
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 87, y: 42}
+  - name: fire-animated_Frame_29
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 87
+      y: 80
+      width: 18
+      height: 31
+    spriteID: 8091e6ad875e0489d89111581358dbdf
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 87, y: 80}
+  - name: fire-animated_Frame_30
+    originalName: 
+    pivot: {x: 0.5, y: -0.03448276}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 114
+      y: 191
+      width: 18
+      height: 29
+    spriteID: 8c59b5f2656a74bd6887ace2d962e53e
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 114, y: 191}
+  - name: fire-animated_Frame_31
+    originalName: 
+    pivot: {x: 0.5555556, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 87
+      y: 119
+      width: 18
+      height: 31
+    spriteID: 8bde81bc21d0b4634971d6f285c2ed18
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 87, y: 119}
+  - name: fire-animated_Frame_32
+    originalName: 
+    pivot: {x: 0.5555556, y: -0.03448276}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 140
+      y: 4
+      width: 18
+      height: 29
+    spriteID: 7a78a835ec03c4dd69fe06bbf01a1c50
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 140, y: 4}
+  spriteSheetImportData: []
+  asepriteLayers:
+  - layerIndex: 0
+    guid: -2074524472
+    name: fire-animated
+    layerFlags: 0
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: fire-animated_Frame_0
+      frameIndex: 0
+      cellRect:
+        x: 6
+        y: 1
+        width: 19
+        height: 30
+      spriteId: de29af37dd6e3400ba2f5922405d9643
+    - name: fire-animated_Frame_1
+      frameIndex: 1
+      cellRect:
+        x: 6
+        y: 0
+        width: 19
+        height: 30
+      spriteId: 3a048590f5a714489933f7fad814bf13
+    - name: fire-animated_Frame_2
+      frameIndex: 2
+      cellRect:
+        x: 6
+        y: 0
+        width: 18
+        height: 30
+      spriteId: a2cf5c0bd94d541679275a3f14afac46
+    - name: fire-animated_Frame_3
+      frameIndex: 3
+      cellRect:
+        x: 6
+        y: 1
+        width: 18
+        height: 30
+      spriteId: faa6ab171e7924632abfdb2c02b9ffeb
+    - name: fire-animated_Frame_4
+      frameIndex: 4
+      cellRect:
+        x: 6
+        y: 1
+        width: 18
+        height: 29
+      spriteId: d04f2c94eaf8e4ff894670bb83cfb712
+    - name: fire-animated_Frame_5
+      frameIndex: 5
+      cellRect:
+        x: 6
+        y: 2
+        width: 18
+        height: 29
+      spriteId: d2ea85337b1744dbcbe3243a5e1d9f6b
+    - name: fire-animated_Frame_6
+      frameIndex: 6
+      cellRect:
+        x: 7
+        y: 2
+        width: 17
+        height: 30
+      spriteId: 5be96ca130fe544c8a6b692cd8c17415
+    - name: fire-animated_Frame_7
+      frameIndex: 7
+      cellRect:
+        x: 7
+        y: 1
+        width: 17
+        height: 30
+      spriteId: 30aebd4df03234433a8c5b8ce8dd7dda
+    - name: fire-animated_Frame_8
+      frameIndex: 8
+      cellRect:
+        x: 6
+        y: 1
+        width: 18
+        height: 30
+      spriteId: ad8a3217f92cb4bb992dda966b76f9e0
+    - name: fire-animated_Frame_9
+      frameIndex: 9
+      cellRect:
+        x: 7
+        y: 1
+        width: 18
+        height: 29
+      spriteId: 9c115169af67e4aca860d86fd0f3d5ff
+    - name: fire-animated_Frame_10
+      frameIndex: 10
+      cellRect:
+        x: 7
+        y: 1
+        width: 19
+        height: 29
+      spriteId: 699310eeb9df842909616939b8570d14
+    - name: fire-animated_Frame_11
+      frameIndex: 11
+      cellRect:
+        x: 7
+        y: 1
+        width: 19
+        height: 30
+      spriteId: 50cf3c1725654496e8c6518ba8a05be6
+    - name: fire-animated_Frame_12
+      frameIndex: 12
+      cellRect:
+        x: 6
+        y: 1
+        width: 20
+        height: 30
+      spriteId: 1cd5e9683871d4c879cede23d315338d
+    - name: fire-animated_Frame_13
+      frameIndex: 13
+      cellRect:
+        x: 6
+        y: 0
+        width: 20
+        height: 30
+      spriteId: 25389bb2c9e9549af814c9c8ee314563
+    - name: fire-animated_Frame_14
+      frameIndex: 14
+      cellRect:
+        x: 7
+        y: 0
+        width: 19
+        height: 30
+      spriteId: b4a1c3f51364e483eaa744e7a277f821
+    - name: fire-animated_Frame_15
+      frameIndex: 15
+      cellRect:
+        x: 7
+        y: 1
+        width: 19
+        height: 30
+      spriteId: e03d53842e55f4d7481b7770007bd513
+    - name: fire-animated_Frame_16
+      frameIndex: 16
+      cellRect:
+        x: 6
+        y: 1
+        width: 20
+        height: 30
+      spriteId: 5d44e6c0d1bae466db8c0e941155e233
+    - name: fire-animated_Frame_17
+      frameIndex: 17
+      cellRect:
+        x: 6
+        y: 2
+        width: 20
+        height: 30
+      spriteId: 3621d772b9cca4b9f8528bcb2ed8b390
+    - name: fire-animated_Frame_18
+      frameIndex: 18
+      cellRect:
+        x: 6
+        y: 2
+        width: 20
+        height: 30
+      spriteId: d84d2123e7d1b4a9caf9d1f159d35205
+    - name: fire-animated_Frame_19
+      frameIndex: 19
+      cellRect:
+        x: 6
+        y: 1
+        width: 20
+        height: 30
+      spriteId: be7133716a1614d13af3524669a21d5a
+    - name: fire-animated_Frame_20
+      frameIndex: 20
+      cellRect:
+        x: 7
+        y: 1
+        width: 19
+        height: 30
+      spriteId: 489a8414406ff49d29f8823c903d5fab
+    - name: fire-animated_Frame_21
+      frameIndex: 21
+      cellRect:
+        x: 7
+        y: 0
+        width: 19
+        height: 30
+      spriteId: 2541a927500494195afd2c4d264fd9bd
+    - name: fire-animated_Frame_22
+      frameIndex: 22
+      cellRect:
+        x: 6
+        y: 0
+        width: 20
+        height: 30
+      spriteId: c378d1a72fca049a892b6bf333750b46
+    - name: fire-animated_Frame_23
+      frameIndex: 23
+      cellRect:
+        x: 6
+        y: 1
+        width: 20
+        height: 30
+      spriteId: 7977945b56dbf4ff894d0b2496980eb5
+    - name: fire-animated_Frame_24
+      frameIndex: 24
+      cellRect:
+        x: 6
+        y: 1
+        width: 20
+        height: 30
+      spriteId: 9b661f662fd284d78a18a1b550b8e8eb
+    - name: fire-animated_Frame_25
+      frameIndex: 25
+      cellRect:
+        x: 6
+        y: 2
+        width: 20
+        height: 30
+      spriteId: 33860b008e68745eabfb4271f9facfcc
+    - name: fire-animated_Frame_26
+      frameIndex: 26
+      cellRect:
+        x: 6
+        y: 2
+        width: 20
+        height: 30
+      spriteId: c762d00ded856444780efb6e84cbb650
+    - name: fire-animated_Frame_27
+      frameIndex: 27
+      cellRect:
+        x: 6
+        y: 1
+        width: 20
+        height: 30
+      spriteId: 723890a510faa4bc086865bfe96c0197
+    - name: fire-animated_Frame_28
+      frameIndex: 28
+      cellRect:
+        x: 6
+        y: 1
+        width: 19
+        height: 30
+      spriteId: a744df8e60f584a21b164c2ff896e3ff
+    - name: fire-animated_Frame_29
+      frameIndex: 29
+      cellRect:
+        x: 7
+        y: 0
+        width: 18
+        height: 31
+      spriteId: 8091e6ad875e0489d89111581358dbdf
+    - name: fire-animated_Frame_30
+      frameIndex: 30
+      cellRect:
+        x: 7
+        y: 1
+        width: 18
+        height: 29
+      spriteId: 8c59b5f2656a74bd6887ace2d962e53e
+    - name: fire-animated_Frame_31
+      frameIndex: 31
+      cellRect:
+        x: 6
+        y: 0
+        width: 18
+        height: 31
+      spriteId: 8bde81bc21d0b4634971d6f285c2ed18
+    - name: fire-animated_Frame_32
+      frameIndex: 32
+      cellRect:
+        x: 6
+        y: 1
+        width: 18
+        height: 29
+      spriteId: 7a78a835ec03c4dd69fe06bbf01a1c50
+    linkedCells: []
+    parentIndex: -1
+  platformSettings:
+  - name: DefaultTexturePlatform
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: Standalone
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: Server
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: WebGL
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  secondarySpriteTextures: []
+  spritePackingTag: 
+  canvasSize: {x: 32, y: 32}
