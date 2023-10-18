@@ -406,7 +406,7 @@ Transform:
   m_GameObject: {fileID: 677962506}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.0900009, y: 4.040002, z: -50}
+  m_LocalPosition: {x: 3.0000005, y: 4.300002, z: -50}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -68468,7 +68468,7 @@ Transform:
   m_GameObject: {fileID: 1357553730}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.0900009, y: 4.040002, z: -50}
+  m_LocalPosition: {x: 3.0000005, y: 4.300002, z: -50}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -73984,6 +73984,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4075111494962630140}
   - component: {fileID: 7461713276616876565}
+  - component: {fileID: 7461713276616876567}
   - component: {fileID: 3907169365318460754}
   - component: {fileID: 163731740774607014}
   - component: {fileID: 7461713276616876566}
@@ -74005,8 +74006,8 @@ Rigidbody2D:
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 1
-  m_Mass: 2.7378001
+  m_UseAutoMass: 0
+  m_Mass: 3
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -74030,7 +74031,7 @@ Transform:
   m_GameObject: {fileID: 3846160804732495257}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.09, y: 0.04, z: 0}
+  m_LocalPosition: {x: 3, y: 0.3, z: 0}
   m_LocalScale: {x: 6, y: 6, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -74136,12 +74137,12 @@ SpriteRenderer:
   m_SortingLayerID: -1247549027
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 2081306553264671016, guid: 63f6fd1b8358f4f77ac1af4b94570c65, type: 3}
+  m_Sprite: {fileID: 6375118125562155239, guid: 06602dc5594c447e7907157d9e56d452, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.15, y: 0.27}
+  m_Size: {x: 0.19, y: 0.3}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -74182,9 +74183,9 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0}
-    oldSize: {x: 0.26, y: 0.31}
-    newSize: {x: 0.15, y: 0.27}
+    pivot: {x: 0.5263158, y: -0.033333335}
+    oldSize: {x: 0.19, y: 0.3}
+    newSize: {x: 0.19, y: 0.3}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -74199,6 +74200,27 @@ PolygonCollider2D:
       - {x: 0.14, y: 0.089999996}
       - {x: 0.14, y: 0.31}
   m_UseDelaunayMesh: 0
+--- !u!95 &7461713276616876567
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3846160804732495257}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3b7f17d794965434ca0d71d8c460126b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
