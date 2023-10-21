@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,7 @@ public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D playerRigidbody;            // Reference to the Rigidbody2D component of the player.
     private SpriteRenderer playerSpriteRenderer;    // Reference to the SpriteRenderer component of the player.
+    private Animator playerAnimator;                // Reference to the Animator component of the player.
 
     public float moveSpeed = 8.0f;            // Player movement speed.
     public float jumpForce = 200.0f;          // Force applied to the player for jumping.
@@ -26,6 +28,9 @@ public class PlayerController : MonoBehaviour
 
         // Get the reference to the SpriteRenderer component attached to the player object.
         playerSpriteRenderer = GetComponent<SpriteRenderer>();
+
+        // Get the reference to the Animator component attached to the player object.
+        playerAnimator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -83,8 +88,22 @@ public class PlayerController : MonoBehaviour
     // Move the player based on the input and speed.
     void MovePlayer(float speed)
     {
-        float motion = horizontalInput * speed * Time.deltaTime;
-        transform.Translate(motion * Vector2.right);
+        float horizontalMotion = horizontalInput * speed * Time.deltaTime;
+        float movingThreshold = Math.Abs(horizontalMotion / Time.deltaTime);
+
+        // Handle player animations.
+        if (movingThreshold > 0.1)
+        {
+            playerAnimator.SetBool("IsMoving", true);
+        }
+        else
+        {
+            playerAnimator.SetBool("IsMoving", false);
+        }
+
+        playerAnimator.SetFloat("Speed", movingThreshold);
+
+        transform.Translate(horizontalMotion * Vector2.right);
     }
 
     // Apply a vertical force to make the player jump.
