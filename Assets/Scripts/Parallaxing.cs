@@ -6,12 +6,12 @@ public class Parallaxing : MonoBehaviour
 {
     public Transform[] backgrounds;                     // Array of all the back and foregrounds to be parallaxed.
     private float[] parallaxScales;                     // The proportion of the camera's movement to move the backgrounds by.
-    public float smoothing = 1.0f;                      // How smooth the parallax is going to be. Make sure to set this above 0.
+    private const float smoothing = 5.0f;               // How smooth the parallax is going to be. Make sure to set this above 0.
 
     private new Transform camera;                       // Reference to the main camera's transform.
     private Vector3 previousCameraPosition;             // The positin of the camera in the previous frame.
 
-    // Awake is called before Start(). Greate for references.
+    // Awake is called before Start(). Great for references.
     private void Awake()
     {
         // Set up the camera reference.

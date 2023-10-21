@@ -89,7 +89,16 @@ public class PlayerController : MonoBehaviour
     void MovePlayer(float speed)
     {
         float horizontalMotion = horizontalInput * speed * Time.deltaTime;
-        float movingThreshold = Math.Abs(horizontalMotion / Time.deltaTime);
+
+        AnimatePlayer(horizontalMotion);
+
+        transform.Translate(horizontalMotion * Vector2.right);
+    }
+
+    // Animate player based on speed threshold.
+    void AnimatePlayer(float threshold)
+    {
+        float movingThreshold = Math.Abs(threshold / Time.deltaTime);
 
         // Handle player animations.
         if (movingThreshold > 0.1)
@@ -102,8 +111,6 @@ public class PlayerController : MonoBehaviour
         }
 
         playerAnimator.SetFloat("Speed", movingThreshold);
-
-        transform.Translate(horizontalMotion * Vector2.right);
     }
 
     // Apply a vertical force to make the player jump.
