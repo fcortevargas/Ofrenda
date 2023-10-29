@@ -9,16 +9,16 @@ public class Spirit : MonoBehaviour
 
     private const float nextWaypointDistance = 1f; // The minimum distance to consider a waypoint as reached.
     private const float yDistanceToPortalThreshold = 1f; // The distance to determine if the spirit can "see" the portal.
-    private const float distanceThreshold = 5f; // The distance threshold to trigger the faster spped
+    private const float distanceThreshold = 5f; // The distance threshold to trigger the faster speed
 
-    private const float normalSpeed = 150; // The normal movement speed of the spirit.
-    private const float fastSpeed = 300; // The faster movement speed of the spirit.
+    private const float normalSpeed = 250; // The normal movement speed of the spirit.
+    private const float fastSpeed = 400; // The faster movement speed of the spirit.
 
     [SerializeField] private float speed;
 
     private Path path; // The calculated path for the spirit to follow.
-    [SerializeField] private int currentWaypoint = 0; // The index of the current waypoint in the path.
-    //[SerializeField] private bool reachedEndOfPath = false; // Indicates if the spirit has reached the end of its path.
+    private int currentWaypoint = 0; // The index of the current waypoint in the path.
+    // [SerializeField] private bool reachedEndOfPath = false; // Indicates if the spirit has reached the end of its path.
 
     Seeker seeker; // A component for pathfinding calculations.
     Rigidbody2D rb; // The Rigidbody2D component for the spirit's physics.
@@ -116,12 +116,12 @@ public class Spirit : MonoBehaviour
 
         if (currentWaypoint >= path.vectorPath.Count) // Check if the spirit has reached the end of the path.
         {
-            //reachedEndOfPath = true;
+            // reachedEndOfPath = true;
             return;
         }
         else
         {
-            //reachedEndOfPath = false;
+            // reachedEndOfPath = false;
         }
 
         // Calculate the direction and force needed to move towards the current waypoint.

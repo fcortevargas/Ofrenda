@@ -2,161 +2,149 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerController : MonoBehaviour
 {
-    private Rigidbody2D playerRigidbody;            // Reference to the Rigidbody2D component of the player.
-    private SpriteRenderer playerSpriteRenderer;    // Reference to the SpriteRenderer component of the player.
-    private Animator playerAnimator;                // Reference to the Animator component of the player.
+    [SerializeField] private float jumpForce = 400f;                          // Amount of force added when the player jumps.
+    [Range(0, 1)][SerializeField] private float crouchSpeed = .36f;           // Amount of maxSpeed applied to crouching movement. 1 = 100%
+    [Range(0, .3f)][SerializeField] private float movementSmoothing = .05f;   // How much to smooth out the movement
+    [SerializeField] private bool airControl = false;                         // Whether or not a player can steer while jumping;
+    [SerializeField] private LayerMask whatIsGround;                          // A mask determining what is ground to the character
+    [SerializeField] private Transform groundCheck;                           // A position marking where to check if the player is grounded.
+    [SerializeField] private Transform ceilingCheck;                          // A position marking where to check for ceilings
+    [SerializeField] private Collider2D crouchDisableCollider;                // A collider that will be disabled when crouching
 
-    public float moveSpeed = 8.0f;            // Player movement speed.
-    public float jumpForce = 200.0f;          // Force applied to the player for jumping.
-    public float xBoundary = 11.8f;           // Horizontal boundary for constraining player movement.
+    const float groundedRadius = .2f; // Radius of the overlap circle to determine if grounded
+    [SerializeField] private bool grounded;            // Whether or not the player is grounded.
+    const float ceilingRadius = .2f;  // Radius of the overlap circle to determine if the player can stand up
+    private Rigidbody2D playerRigidbody2D;
+    private bool facingRight = true;  // For determining which way the player is currently facing.
+    private Vector3 velocity = Vector3.zero;
 
-    public float doubleJumpForceRatio = 0.5f;       // Relative intensity of the force for the second jump.
+    [Header("Events")]
+    [Space]
 
-    public bool isOnSurface;                        // Boolean to check if the player is on the ground.
-    public bool doubleJumpUsed;                     // Boolean to check if the player has jumped twice already.
+    public UnityEvent OnLandEvent;
 
-    private float horizontalInput;                  // Stores the horizontal input value.
+    [Serializable]
+    public class BoolEvent : UnityEvent<bool> { }
 
-    // Start is called before the first frame update
-    void Start()
+    public BoolEvent OnCrouchEvent;
+    private bool wasCrouching = false;
+
+    private void Awake()
     {
-        // Get the reference to the Rigidbody2D component attached to the player object.
-        playerRigidbody = GetComponent<Rigidbody2D>();
+        playerRigidbody2D = GetComponent<Rigidbody2D>();
 
-        // Get the reference to the SpriteRenderer component attached to the player object.
-        playerSpriteRenderer = GetComponent<SpriteRenderer>();
+        if (OnLandEvent == null)
+            OnLandEvent = new UnityEvent();
 
-        // Get the reference to the Animator component attached to the player object.
-        playerAnimator = GetComponent<Animator>();
+        if (OnCrouchEvent == null)
+            OnCrouchEvent = new BoolEvent();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
-        // Call the method to handle player movement.
-        HandlePlayerMovement();
+        bool wasGrounded = grounded;
+        grounded = false;
 
-        // Call the method to keep the player within the specified boundary.
-        ConstrainPlayerPosition();
-    }
-
-    // Method to handle player movement.
-    void HandlePlayerMovement()
-    {
-        // Get the horizontal input axis value (A/D keys or Left/Right arrow keys).
-        horizontalInput = Input.GetAxis("Horizontal");
-
-        // Flip player's sprite based on horizontal input.
-        FlipSprite();
-
-        // Check if the player is on the surface and adjust movement speed accordingly.
-        if (isOnSurface)
+        // The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
+        // This can be done using layers instead but Sample Assets will not overwrite your project settings.
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheck.position, groundedRadius, whatIsGround);
+        for (int i = 0; i < colliders.Length; i++)
         {
-            MovePlayer(moveSpeed);
-        }
-        else if (!isOnSurface)
-        {
-            MovePlayer(moveSpeed * 0.5f);
-        }
-
-        // Check for jump input and perform appropriate jump action.
-        if (GetJumpKeyPressed())
-        {
-            if (isOnSurface)
+            if (colliders[i].gameObject != gameObject)
             {
-                Jump(jumpForce);
-                isOnSurface = false;
-                doubleJumpUsed = false;
-            }
-            else if (!isOnSurface && !doubleJumpUsed)
-            {
-                doubleJumpUsed = true;
-                Jump(doubleJumpForceRatio * jumpForce);
+                grounded = true;
+                if (!wasGrounded)
+                    OnLandEvent.Invoke();
             }
         }
     }
 
-    // Check if any of the jump keys (Space, UpArrow, W) are pressed.
-    bool GetJumpKeyPressed()
+
+    public void Move(float move, bool crouch, bool jump)
     {
-        return Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W);
+        // If crouching, check to see if the character can stand up
+        if (!crouch)
+        {
+            // If the character has a ceiling preventing them from standing up, keep them crouching
+            if (Physics2D.OverlapCircle(ceilingCheck.position, ceilingRadius, whatIsGround))
+            {
+                crouch = true;
+            }
+        }
+
+        // Only control the player if grounded or airControl is turned on
+        if (grounded || airControl)
+        {
+
+            // If crouching
+            if (crouch)
+            {
+                if (!wasCrouching)
+                {
+                    wasCrouching = true;
+                    OnCrouchEvent.Invoke(true);
+                }
+
+                // Reduce the speed by the crouchSpeed multiplier
+                move *= crouchSpeed;
+
+                // Disable one of the colliders when crouching
+                if (crouchDisableCollider != null)
+                    crouchDisableCollider.enabled = false;
+            }
+            else
+            {
+                // Enable the collider when not crouching
+                if (crouchDisableCollider != null)
+                    crouchDisableCollider.enabled = true;
+
+                if (wasCrouching)
+                {
+                    wasCrouching = false;
+                    OnCrouchEvent.Invoke(false);
+                }
+            }
+
+            // Move the character by finding the target velocity
+            Vector3 targetVelocity = new Vector2(move * 10f, playerRigidbody2D.velocity.y);
+            // And then smoothing it out and applying it to the character
+            playerRigidbody2D.velocity = Vector3.SmoothDamp(playerRigidbody2D.velocity, targetVelocity, ref velocity, movementSmoothing);
+
+            // If the input is moving the player right and the player is facing left...
+            if (move > 0 && !facingRight)
+            {
+                // ... flip the player.
+                Flip();
+            }
+            // Otherwise if the input is moving the player left and the player is facing right...
+            else if (move < 0 && facingRight)
+            {
+                // ... flip the player.
+                Flip();
+            }
+        }
+        // If the player should jump...
+        if (grounded && jump)
+        {
+            // Add a vertical force to the player.
+            grounded = false;
+            playerRigidbody2D.AddForce(new Vector2(0f, jumpForce));
+        }
     }
 
-    // Move the player based on the input and speed.
-    void MovePlayer(float speed)
+
+    private void Flip()
     {
-        float horizontalMotion = horizontalInput * speed * Time.deltaTime;
+        // Switch the way the player is labelled as facing.
+        facingRight = !facingRight;
 
-        AnimatePlayer(horizontalMotion);
-
-        transform.Translate(horizontalMotion * Vector2.right);
-    }
-
-    // Animate player based on speed threshold.
-    void AnimatePlayer(float threshold)
-    {
-        float movingThreshold = Math.Abs(threshold / Time.deltaTime);
-
-        // Handle player animations.
-        if (movingThreshold > 0.1)
-        {
-            playerAnimator.SetBool("IsMoving", true);
-        }
-        else
-        {
-            playerAnimator.SetBool("IsMoving", false);
-        }
-
-        playerAnimator.SetFloat("Speed", movingThreshold);
-    }
-
-    // Apply a vertical force to make the player jump.
-    void Jump(float force)
-    {
-        playerRigidbody.AddForce(force * Vector2.up);
-    }
-
-    // Method to constrain the player's position within the horizontal boundary.
-    void ConstrainPlayerPosition()
-    {
-        if (transform.position.x > xBoundary)
-        {
-            // If the player moves beyond the right boundary, set its position to the boundary's limit.
-            transform.position = new Vector2(xBoundary, transform.position.y);
-        }
-
-        if (transform.position.x < -xBoundary)
-        {
-            // If the player moves beyond the left boundary, set its position to the boundary's limit.
-            transform.position = new Vector2(-xBoundary, transform.position.y);
-        }
-    }
-
-    // Flip the player sprite to face the appropriate direction.
-    void FlipSprite()
-    {
-        if (horizontalInput < 0)
-        {
-            // Flip to face left.
-            playerSpriteRenderer.flipX = true;
-        }
-        else if (horizontalInput > 0)
-        {
-            // Flip to face right.
-            playerSpriteRenderer.flipX = false;
-        }
-    }
-
-    // Method to handle collision with other objects.
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        // Check if the player is colliding with a surface.
-        if (collision.gameObject.CompareTag("Surface"))
-        {
-            isOnSurface = true;
-        }
+        // Multiply the player's x local scale by -1.
+        Vector3 playerLocalScale = transform.localScale;
+        playerLocalScale.x *= -1;
+        transform.localScale = playerLocalScale;
     }
 }
