@@ -74278,10 +74278,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4075111494962630140}
   - component: {fileID: 7461713276616876565}
+  - component: {fileID: 7461713276616876572}
   - component: {fileID: 7461713276616876571}
   - component: {fileID: 7461713276616876567}
   - component: {fileID: 3907169365318460754}
-  - component: {fileID: 7461713276616876572}
   - component: {fileID: 7461713276616876574}
   - component: {fileID: 7461713276616876573}
   m_Layer: 7
@@ -74482,6 +74482,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpForce: 2500
   crouchSpeed: 0.36
+  midairSpeed: 0.7
   movementSmoothing: 0.15
   airControl: 1
   whatIsGround:
@@ -74490,7 +74491,7 @@ MonoBehaviour:
   groundCheck: {fileID: 2018999251}
   ceilingCheck: {fileID: 1477090119}
   crouchDisableCollider: {fileID: 7461713276616876574}
-  grounded: 0
+  isGrounded: 0
   OnLandEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -74509,6 +74510,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a039e3b8463424b93af8b5673d6587c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxSpeed: 50
 --- !u!70 &7461713276616876573
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -74576,7 +74578,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0050000027, y: 0.1676617}
+  m_Offset: {x: -0.005808618, y: 0.1676617}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5263158, y: -0.033333335}
@@ -74587,7 +74589,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.19, y: 0.13624246}
+  m_Size: {x: 0.17221051, y: 0.13624245}
   m_EdgeRadius: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
