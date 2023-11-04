@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class PlayerController : MonoBehaviour
+public class PlayerControl : MonoBehaviour
 {
     [SerializeField] private float jumpForce = 400f;                            // Amount of force added when the player jumps
     [Range(0, 1)][SerializeField] private float crouchSpeed = .36f;             // Amount of maxSpeed applied to crouching movement. 1 = 100%
@@ -20,9 +20,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private bool isGrounded;                                   // Whether or not the player is grounded.
     const float ceilingRadius = .2f;                                            // Radius of the overlap circle to determine if the player can stand up
     private Rigidbody2D playerRigidbody2D;
-    private SpriteRenderer playerSpriteRenderer;
-    private Animator playerAnimator;
-    private Player player;
     private bool isFacingRight = true;                                          // For determining which way the player is currently facing
     private Vector3 velocity = Vector3.zero;
 
@@ -40,12 +37,6 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         playerRigidbody2D = GetComponent<Rigidbody2D>();
-
-        playerSpriteRenderer = GetComponent<SpriteRenderer>();
-
-        playerAnimator = GetComponent<Animator>();
-
-        player = new Player();
 
         OnLandEvent ??= new UnityEvent();
 
@@ -167,49 +158,5 @@ public class PlayerController : MonoBehaviour
         transform.localScale = playerLocalScale;
     }
 
-    public void SwitchCharacter(string characterType)
-    {
-        // Only three character types allowed
-        if (characterType == "fire" || characterType == "cempasuchil" || characterType == "xolo")
-        {
-            player.Type = characterType;
-            Debug.Log(player.Type);
-            Debug.Log(player.Animator);
-            Debug.Log(player.Sprite);
-        }
-        else
-        {
-            Debug.LogError("Character type not accepted, please enter accepted character type.");
-            return;
-        }
-    }
-}
 
-struct Player
-{
-    private string _type;
-    private string _animator;
-    private string _sprite;
-
-    public string Type
-    {
-        readonly get => _type;
-
-        set
-        {
-            _type = value;
-            _animator = _type + "-animated";
-            _sprite = _type + "-animated_Frame_0";
-        }
-    }
-
-    public readonly string Animator
-    {
-        get => _animator;
-    }
-
-    public readonly string Sprite
-    {
-        get => _sprite;
-    }
 }

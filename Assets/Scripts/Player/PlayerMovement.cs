@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    PlayerController playerController;
+    PlayerControl playerController;
     Animator playerAnimator;
 
     // Control variables
@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
     
     void Awake()
     {
-        playerController = GetComponent<PlayerController>();
+        playerController = GetComponent<PlayerControl>();
         playerAnimator = GetComponent<Animator>();
     }
 
@@ -38,11 +38,6 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump"))
         {
             jump = true;
-        }
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            playerController.SwitchCharacter("fire");
         }
     }
 
