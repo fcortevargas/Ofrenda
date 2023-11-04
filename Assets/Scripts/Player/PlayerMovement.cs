@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    PlayerController playerController;
+    PlayerControl playerController;
     Animator playerAnimator;
 
     // Control variables
-    const float speed = 40f;
+    [SerializeField] private float maxSpeed = 40f;
     bool jump = false;
-    bool crouch = false;
+    const bool crouch = false;
 
     // Animator parameters
     float horizontalInput = 0f;
@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
     
     void Awake()
     {
-        playerController = GetComponent<PlayerController>();
+        playerController = GetComponent<PlayerControl>();
         playerAnimator = GetComponent<Animator>();
     }
 
@@ -38,13 +38,12 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump"))
         {
             jump = true;
-            Debug.Log("Jump!");
         }
     }
 
     void FixedUpdate()
     {
-        playerController.Move(horizontalInput * speed * Time.fixedDeltaTime, crouch, jump);
+        playerController.Move(horizontalInput * maxSpeed * Time.fixedDeltaTime, crouch, jump);
         jump = false;
 
         HandleAnimations();

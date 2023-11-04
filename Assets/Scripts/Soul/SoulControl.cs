@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using Pathfinding;
 
-public class Spirit : MonoBehaviour
+public class SoulControl : MonoBehaviour
 {
     public GameObject player; // The player GameObject that the spirit is following.
     public GameObject portal; // The portal GameObject that the spirit will go to if close enough.
