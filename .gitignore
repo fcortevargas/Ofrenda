@@ -250,4 +250,4 @@ cython_debug/
 .idea/
 
 # Unity Version Control
-.plastic
+.plastic/

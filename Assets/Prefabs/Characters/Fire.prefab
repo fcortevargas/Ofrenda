@@ -161,7 +161,7 @@ MonoBehaviour:
     m_Bits: 1655
   groundCheck: {fileID: 5316112678514928876}
   ceilingCheck: {fileID: 7138036511879245075}
-  crouchDisableCollider: {fileID: 0}
+  crouchDisableCollider: {fileID: 5837778320281082267}
   isGrounded: 0
   OnLandEvent:
     m_PersistentCalls:
@@ -249,9 +249,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.09375, y: 1.3840765}
+  m_Offset: {x: -0.03125, y: 0.59375}
   serializedVersion: 2
-  m_Radius: 0.6246551
+  m_Radius: 0.59375
 --- !u!70 &5837778320281082267
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -284,8 +284,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.1, y: 0.77}
-  m_Size: {x: 1, y: 1.5321472}
+  m_Offset: {x: -0.03125, y: 1.0939324}
+  m_Size: {x: 1.1875, y: 2.1871352}
   m_Direction: 0
 --- !u!1 &3806260918518955592
 GameObject:

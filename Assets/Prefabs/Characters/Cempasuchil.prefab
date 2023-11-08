@@ -139,7 +139,7 @@ GameObject:
   - component: {fileID: 1127046760231852702}
   - component: {fileID: 3893295390522830767}
   - component: {fileID: 8143454140393093059}
-  - component: {fileID: 8208199096585498791}
+  - component: {fileID: 9154857140527714852}
   m_Layer: 7
   m_Name: Cempasuchil
   m_TagString: Player
@@ -253,7 +253,7 @@ MonoBehaviour:
     m_Bits: 1655
   groundCheck: {fileID: 8810755592225940416}
   ceilingCheck: {fileID: 2876573511010992472}
-  crouchDisableCollider: {fileID: 0}
+  crouchDisableCollider: {fileID: 9154857140527714852}
   isGrounded: 0
   OnLandEvent:
     m_PersistentCalls:
@@ -318,7 +318,7 @@ CircleCollider2D:
   m_GameObject: {fileID: 7016917745409097742}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: f0bdd02667dda47c6bc37199f870b898, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -341,10 +341,10 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.125, y: 1.2764153}
+  m_Offset: {x: -0.03125, y: 0.59375}
   serializedVersion: 2
-  m_Radius: 0.59858465
---- !u!70 &8208199096585498791
+  m_Radius: 0.59375
+--- !u!70 &9154857140527714852
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -376,6 +376,6 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.13244867, y: 0.73638535}
-  m_Size: {x: 1.0385263, y: 1.4727707}
+  m_Offset: {x: -0.03125, y: 0.9375}
+  m_Size: {x: 1.1875, y: 1.875}
   m_Direction: 0
