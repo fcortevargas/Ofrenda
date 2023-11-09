@@ -480,6 +480,13 @@ MonoBehaviour:
   _groundLayers:
     serializedVersion: 2
     m_Bits: 1655
+  _groundThreshold: 0.6
+  _colliderOffset: {x: 0.5, y: 0, z: 0}
+  _canPlayerMove: 1
+  _isOnGround: 0
+  _isTurning: 0
+  _canJumpAgain: 0
+  _isJumping: 0
   _maxSpeed: 15
   _maxAcceleration: 70
   _maxDecceleration: 90
@@ -488,14 +495,27 @@ MonoBehaviour:
   _maxAirDeceleration: 0
   _maxAirTurnSpeed: 80
   _friction: 0
-  _canPlayerMove: 1
-  _isOnGround: 0
-  _isTurning: 0
   _velocity: {x: 0, y: 0}
   _targetVelocity: {x: 0, y: 0}
-  _groundThreshold: 0.6
-  _colliderOffset: {x: 0.5, y: 0, z: 0}
-  _pressingKey: 0
+  _maxJumpHeight: 2.25
+  _timeToJumpApex: 0.38
+  _upwardGravityMultiplier: 1
+  _downwardGravityMultiplier: 3
+  _maxNumberJumps: 0
+  _enableVariableJumpHeight: 1
+  _jumpCutOff: 4
+  _fallSpeedLimit: 20
+  _coyoteTime: 0.15
+  _jumpBuffer: 0.15
+  _jumpSpeed: 0
+  _defaultGravityScale: 1
+  _gravityMultiplier: 1
+  _executeJump: 0
+  _jumpBufferCounter: 0
+  _coyoteTimeCounter: 0
+  _pressingMove: 0
+  _pressedJump: 0
+  _pressingJump: 0
   _horizontalInput: 0
 --- !u!212 &884226291
 SpriteRenderer:

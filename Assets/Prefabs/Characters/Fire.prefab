@@ -41,8 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4086095763713928532}
   - component: {fileID: 7080897188234149409}
-  - component: {fileID: 4657267005379133199}
-  - component: {fileID: 765071441846119561}
+  - component: {fileID: 7158023112100616744}
   - component: {fileID: 1465965339557936936}
   - component: {fileID: 3067780669162230390}
   - component: {fileID: 7244760334494452881}
@@ -126,7 +125,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4657267005379133199
+--- !u!114 &7158023112100616744
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -135,40 +134,49 @@ MonoBehaviour:
   m_GameObject: {fileID: 899445674129285979}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a039e3b8463424b93af8b5673d6587c9, type: 3}
+  m_Script: {fileID: 11500000, guid: aefe2606bf07543fda2ad35d5f8d7bf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 50
---- !u!114 &765071441846119561
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 899445674129285979}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 344ad0b091b5f48c3973d6cdb247ab8a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  jumpForce: 2500
-  crouchSpeed: 0.36
-  midairSpeed: 0.7
-  movementSmoothing: 0.15
-  airControl: 1
-  whatIsGround:
+  _groundLayers:
     serializedVersion: 2
     m_Bits: 1655
-  groundCheck: {fileID: 5316112678514928876}
-  ceilingCheck: {fileID: 7138036511879245075}
-  crouchDisableCollider: {fileID: 5837778320281082267}
-  isGrounded: 0
-  OnLandEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  OnCrouchEvent:
-    m_PersistentCalls:
-      m_Calls: []
+  _groundThreshold: 0.6
+  _colliderOffset: {x: 0.1, y: 0, z: 0}
+  _canPlayerMove: 1
+  _isOnGround: 0
+  _isTurning: 0
+  _canJumpAgain: 0
+  _isJumping: 0
+  _maxSpeed: 12
+  _maxAcceleration: 50
+  _maxDecceleration: 70
+  _maxTurnSpeed: 30
+  _maxAirAcceleration: 50
+  _maxAirDeceleration: 60
+  _maxAirTurnSpeed: 20
+  _friction: 0.8
+  _velocity: {x: 0, y: 0}
+  _targetVelocity: {x: 0, y: 0}
+  _maxJumpHeight: 5
+  _timeToJumpApex: 0.42
+  _upwardGravityMultiplier: 1.2
+  _downwardGravityMultiplier: 1.6
+  _maxNumberJumps: 0
+  _enableVariableJumpHeight: 1
+  _jumpCutOff: 3
+  _fallSpeedLimit: 40
+  _coyoteTime: 0.15
+  _jumpBuffer: 0.1
+  _jumpSpeed: 0
+  _defaultGravityScale: 1
+  _gravityMultiplier: 0
+  _executeJump: 0
+  _jumpBufferCounter: 0
+  _coyoteTimeCounter: 0
+  _pressingMove: 0
+  _pressedJump: 0
+  _pressingJump: 0
+  _horizontalInput: 0
 --- !u!95 &1465965339557936936
 Animator:
   serializedVersion: 5
@@ -202,7 +210,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 3
+  m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 3
