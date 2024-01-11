@@ -103,15 +103,14 @@ GameObject:
   m_Component:
   - component: {fileID: 6490992623203751149}
   - component: {fileID: 124985169289762823}
-  - component: {fileID: 4668093980337568829}
-  - component: {fileID: 8482778986875028905}
+  - component: {fileID: 8637966015253996413}
   - component: {fileID: 2214646747636204359}
   - component: {fileID: 747747796551935827}
   - component: {fileID: 7371336608044120983}
   - component: {fileID: 4359040513037315735}
   m_Layer: 7
   m_Name: Xolo
-  m_TagString: Player
+  m_TagString: Xolo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -155,7 +154,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 9ce7d8a720b6a4455ad4955aabd59770, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -187,7 +186,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4668093980337568829
+--- !u!114 &8637966015253996413
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -196,40 +195,49 @@ MonoBehaviour:
   m_GameObject: {fileID: 7979771335098034793}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a039e3b8463424b93af8b5673d6587c9, type: 3}
+  m_Script: {fileID: 11500000, guid: 49ef18559dce241f59706a9b6c57a93c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 50
---- !u!114 &8482778986875028905
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7979771335098034793}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 344ad0b091b5f48c3973d6cdb247ab8a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  jumpForce: 2500
-  crouchSpeed: 0.36
-  midairSpeed: 0.7
-  movementSmoothing: 0.15
-  airControl: 1
-  whatIsGround:
+  _groundLayers:
     serializedVersion: 2
-    m_Bits: 1655
-  groundCheck: {fileID: 7056913358710746141}
-  ceilingCheck: {fileID: 8161194464527060841}
-  crouchDisableCollider: {fileID: 0}
-  isGrounded: 0
-  OnLandEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  OnCrouchEvent:
-    m_PersistentCalls:
-      m_Calls: []
+    m_Bits: 64
+  _groundThreshold: 0.6
+  _colliderOffset: {x: 0.3, y: 0, z: 0}
+  _canPlayerMove: 1
+  _isOnGround: 0
+  _isTurning: 0
+  _canJumpAgain: 0
+  _isJumping: 0
+  _maxSpeed: 12
+  _maxAcceleration: 50
+  _maxDecceleration: 40
+  _maxTurnSpeed: 15
+  _maxAirAcceleration: 50
+  _maxAirDeceleration: 40
+  _maxAirTurnSpeed: 20
+  _friction: 0.9
+  _velocity: {x: 0, y: 0}
+  _targetVelocity: {x: 0, y: 0}
+  _maxJumpHeight: 5
+  _timeToJumpApex: 0.42
+  _upwardGravityMultiplier: 1.2
+  _downwardGravityMultiplier: 1.6
+  _maxNumberJumps: 0
+  _enableVariableJumpHeight: 0
+  _jumpCutOff: 3
+  _fallSpeedLimit: 40
+  _coyoteTime: 0.15
+  _jumpBuffer: 0
+  _jumpSpeed: 0
+  _defaultGravityScale: 1
+  _gravityMultiplier: 0
+  _executeJump: 0
+  _jumpBufferCounter: 0
+  _coyoteTimeCounter: 0
+  _pressingMove: 0
+  _pressedJump: 0
+  _pressingJump: 0
+  _horizontalInput: 0
 --- !u!95 &2214646747636204359
 Animator:
   serializedVersion: 5
