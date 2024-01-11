@@ -1,0 +1,1480 @@
+fileFormatVersion: 2
+guid: 28d72ab76768d4c82a318ad85816dcc0
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  textureImporterSettings:
+    alphaSource: 1
+    mipMapMode: 0
+    enableMipMap: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+    convertToNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+    swizzle: 50462976
+    isReadable: 0
+    streamingMipmaps: 0
+    streamingMipmapsPriority: 0
+    vTOnly: 0
+    ignoreMipmapLimit: 0
+    nPOTScale: 1
+    sRGBTexture: 1
+    spriteMode: 2
+    spriteExtrude: 1
+    spriteMeshType: 1
+    alignment: 0
+    spritePivot: {x: 0.5, y: 0.5}
+    spritePixelsToUnits: 100
+    spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+    spriteGenerateFallbackPhysicsShape: 0
+    generateCubemap: 6
+    cubemapConvolution: 0
+    seamlessCubemap: 0
+    alphaIsTransparency: 1
+    spriteTessellationDetail: -1
+    textureType: 8
+    textureShape: 1
+    singleChannelComponent: 0
+    flipbookRows: 0
+    flipbookColumns: 0
+    ignorePngGamma: 0
+    cookieMode: 0
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+    normalMap: 0
+    textureFormat: 0
+    maxTextureSize: 0
+    lightmap: 0
+    compressionQuality: 0
+    linearTexture: 0
+    grayScaleToAlpha: 0
+    rGBM: 0
+    cubemapConvolutionSteps: 0
+    cubemapConvolutionExponent: 0
+    maxTextureSizeSet: 0
+    compressionQualitySet: 0
+    textureFormatSet: 0
+    applyGammaDecoding: 0
+  previousAsepriteImporterSettings:
+    fileImportMode: 1
+    importHiddenLayers: 0
+    layerImportMode: 1
+    defaultPivotSpace: 0
+    defaultPivotAlignment: 7
+    customPivotPosition: {x: 0.5, y: 0.5}
+    spritePadding: 0
+    generateModelPrefab: 1
+    generateAnimationClips: 1
+    addSortingGroup: 1
+    addShadowCasters: 0
+  asepriteImporterSettings:
+    fileImportMode: 1
+    importHiddenLayers: 0
+    layerImportMode: 1
+    defaultPivotSpace: 0
+    defaultPivotAlignment: 7
+    customPivotPosition: {x: 0.5, y: 0.5}
+    spritePadding: 0
+    generateModelPrefab: 1
+    generateAnimationClips: 1
+    addSortingGroup: 1
+    addShadowCasters: 0
+  importFileNodeState: 1
+  platformSettingsDirtyTick: 0
+  textureAssetName: 
+  singleSpriteImportData:
+  - name: 
+    originalName: 
+    pivot: {x: 0, y: 0}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    spriteID: 
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  animatedSpriteImportData:
+  - name: cempasuchil-animated-v1_Frame_0
+    originalName: 
+    pivot: {x: 0.5263158, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 60
+      y: 196
+      width: 19
+      height: 30
+    spriteID: 00617cd1c3bea41daab7a6c54c0db39d
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 60, y: 196}
+  - name: cempasuchil-animated-v1_Frame_1
+    originalName: 
+    pivot: {x: 0.52380955, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 60
+      y: 4
+      width: 21
+      height: 28
+    spriteID: 0df3ba557cc48407f843584c44c431ca
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 60, y: 4}
+  - name: cempasuchil-animated-v1_Frame_2
+    originalName: 
+    pivot: {x: 0.5263158, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 120
+      y: 109
+      width: 19
+      height: 29
+    spriteID: dc8609d3ea1154789900af7840fdce4d
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 120, y: 109}
+  - name: cempasuchil-animated-v1_Frame_3
+    originalName: 
+    pivot: {x: 0.52380955, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 120
+      y: 4
+      width: 21
+      height: 27
+    spriteID: d0fa0d8ffaae0467ab119a84c9ce37a1
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 120, y: 4}
+  - name: cempasuchil-animated-v1_Frame_4
+    originalName: 
+    pivot: {x: 0.5217391, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 89
+      y: 4
+      width: 23
+      height: 25
+    spriteID: b7c1c4d5850814104a2203ade341d94e
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 89, y: 4}
+  - name: cempasuchil-animated-v1_Frame_5
+    originalName: 
+    pivot: {x: 0.52, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 206
+      y: 4
+      width: 25
+      height: 21
+    spriteID: 16d098d31e70647529d7564990f84ee6
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 206, y: 4}
+  - name: cempasuchil-animated-v1_Frame_6
+    originalName: 
+    pivot: {x: 0.5294118, y: -0.02857143}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 35
+      y: 4
+      width: 17
+      height: 35
+    spriteID: d4152408ab9d04d67992bf57579633aa
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 35, y: 4}
+  - name: cempasuchil-animated-v1_Frame_7
+    originalName: 
+    pivot: {x: 0.5217391, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 89
+      y: 37
+      width: 23
+      height: 25
+    spriteID: 99bde3c324f694212943a29a2df4a32e
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 89, y: 37}
+  - name: cempasuchil-animated-v1_Frame_8
+    originalName: 
+    pivot: {x: 0.5263158, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 120
+      y: 146
+      width: 19
+      height: 29
+    spriteID: 9addf3e7c94f8429596aeafe691fd615
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 120, y: 146}
+  - name: cempasuchil-animated-v1_Frame_9
+    originalName: 
+    pivot: {x: 0.5263158, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 89
+      y: 169
+      width: 19
+      height: 30
+    spriteID: 9421be15777f546368e54ed6e854ead2
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 89, y: 169}
+  - name: cempasuchil-animated-v1_Frame_10
+    originalName: 
+    pivot: {x: 0.52380955, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 60
+      y: 40
+      width: 21
+      height: 28
+    spriteID: ab6670685e45840d9b5230cae8fad7c5
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 60, y: 40}
+  - name: cempasuchil-animated-v1_Frame_11
+    originalName: 
+    pivot: {x: 0.5263158, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 120
+      y: 183
+      width: 19
+      height: 29
+    spriteID: 6e66ac40ba9104fb899b0a90bacc5f5f
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 120, y: 183}
+  - name: cempasuchil-animated-v1_Frame_12
+    originalName: 
+    pivot: {x: 0.47368422, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 120
+      y: 220
+      width: 19
+      height: 29
+    spriteID: edf8397aaa0d74f77aabfddd61c12a1d
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 120, y: 220}
+  - name: cempasuchil-animated-v1_Frame_13
+    originalName: 
+    pivot: {x: 0.44444445, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 149
+      y: 189
+      width: 18
+      height: 30
+    spriteID: 8d7e998fa671b40df90ab5faa6380982
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 149, y: 189}
+  - name: cempasuchil-animated-v1_Frame_14
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 60
+      y: 76
+      width: 18
+      height: 32
+    spriteID: 3c3f8694b5441492682cce1d8575001a
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 60, y: 76}
+  - name: cempasuchil-animated-v1_Frame_15
+    originalName: 
+    pivot: {x: 0.47619048, y: -0.18518518}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 120
+      y: 39
+      width: 21
+      height: 27
+    spriteID: 15835c6324db24a6094e19bdc1185aef
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 120, y: 39}
+  - name: cempasuchil-animated-v1_Frame_16
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 116
+      width: 20
+      height: 30
+    spriteID: 5d8a9ecc5739d4adaaf25237ef17e400
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 116}
+  - name: cempasuchil-animated-v1_Frame_17
+    originalName: 
+    pivot: {x: 0.42857143, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 206
+      y: 99
+      width: 21
+      height: 24
+    spriteID: d43298056b7e34a539478791ac2822e2
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 206, y: 99}
+  - name: cempasuchil-animated-v1_Frame_18
+    originalName: 
+    pivot: {x: 0.44444445, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 176
+      y: 179
+      width: 18
+      height: 29
+    spriteID: 9023e2eb4d189494c8fdcc0674d74b43
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 176, y: 179}
+  - name: cempasuchil-animated-v1_Frame_19
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 60
+      y: 116
+      width: 18
+      height: 32
+    spriteID: 41ca9f266dc4241bd9989b67c55b45df
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 60, y: 116}
+  - name: cempasuchil-animated-v1_Frame_20
+    originalName: 
+    pivot: {x: 0.47619048, y: -0.18518518}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 120
+      y: 74
+      width: 21
+      height: 27
+    spriteID: 98471d2604df04757b9af89ae4cf8907
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 120, y: 74}
+  - name: cempasuchil-animated-v1_Frame_21
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 154
+      width: 20
+      height: 30
+    spriteID: 3bb6a65ec52344adea082e37ce941a55
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 154}
+  - name: cempasuchil-animated-v1_Frame_22
+    originalName: 
+    pivot: {x: 0.42857143, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 206
+      y: 131
+      width: 21
+      height: 24
+    spriteID: 6f737b228c1c044289f542e291713223
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 206, y: 131}
+  - name: cempasuchil-animated-v1_Frame_23
+    originalName: 
+    pivot: {x: 0.44444445, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 176
+      y: 216
+      width: 18
+      height: 29
+    spriteID: f52d1bd97b87441eeab48a4344a0d820
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 176, y: 216}
+  - name: cempasuchil-animated-v1_Frame_24
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 60
+      y: 156
+      width: 18
+      height: 32
+    spriteID: 1deff0ec14ad446848c7382cf2b527c1
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 60, y: 156}
+  - name: cempasuchil-animated-v1_Frame_25
+    originalName: 
+    pivot: {x: 0.5, y: -0.033333335}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 192
+      width: 20
+      height: 30
+    spriteID: f75fe42fb838a41869c2b3e09c7660ce
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 192}
+  - name: cempasuchil-animated-v1_Frame_26
+    originalName: 
+    pivot: {x: 0.7619048, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 79
+      width: 21
+      height: 29
+    spriteID: 83022d619486f4034abfd795d867ab0f
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 79}
+  - name: cempasuchil-animated-v1_Frame_27
+    originalName: 
+    pivot: {x: 0.6956522, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 4
+      width: 23
+      height: 29
+    spriteID: a033a3cac21e04bcc90244ef288d66e5
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 4}
+  - name: cempasuchil-animated-v1_Frame_28
+    originalName: 
+    pivot: {x: 0.47368422, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 149
+      y: 4
+      width: 19
+      height: 29
+    spriteID: a8b8ea0c246c24f2fb3ea397a4d3a1b5
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 149, y: 4}
+  - name: cempasuchil-animated-v1_Frame_29
+    originalName: 
+    pivot: {x: 0.13636363, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 41
+      width: 22
+      height: 30
+    spriteID: ab18fdc4e6c5d448abd3d8a9b4b040fd
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 41}
+  - name: cempasuchil-animated-v1_Frame_30
+    originalName: 
+    pivot: {x: 0.47368422, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 149
+      y: 41
+      width: 19
+      height: 29
+    spriteID: 86316e1da04e8429d9929ceaf08d71d7
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 149, y: 41}
+  - name: cempasuchil-animated-v1_Frame_31
+    originalName: 
+    pivot: {x: 0.44444445, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 206
+      y: 62
+      width: 18
+      height: 29
+    spriteID: ce827b86ec6b24b04a30869a9a547b65
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 206, y: 62}
+  - name: cempasuchil-animated-v1_Frame_32
+    originalName: 
+    pivot: {x: 0.5263158, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 176
+      y: 71
+      width: 19
+      height: 28
+    spriteID: 259b8a2d6098c4d3a96e866da9fc341a
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 176, y: 71}
+  - name: cempasuchil-animated-v1_Frame_33
+    originalName: 
+    pivot: {x: 0.5263158, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 176
+      y: 107
+      width: 19
+      height: 28
+    spriteID: 859812a82d80443df984b4a523ca8763
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 176, y: 107}
+  - name: cempasuchil-animated-v1_Frame_34
+    originalName: 
+    pivot: {x: 0.5217391, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 89
+      y: 70
+      width: 23
+      height: 25
+    spriteID: a025729f7f8044c2a9d73d8bb930b9fb
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 89, y: 70}
+  - name: cempasuchil-animated-v1_Frame_35
+    originalName: 
+    pivot: {x: 0.52, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 206
+      y: 33
+      width: 25
+      height: 21
+    spriteID: 93162e5181dce4ebe8f84ebea4710384
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 206, y: 33}
+  - name: cempasuchil-animated-v1_Frame_36
+    originalName: 
+    pivot: {x: 0.5294118, y: -0.02857143}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 35
+      y: 47
+      width: 17
+      height: 35
+    spriteID: f8e0bab24076d4805aac9038bea27832
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 35, y: 47}
+  - name: cempasuchil-animated-v1_Frame_37
+    originalName: 
+    pivot: {x: 0.5, y: -0.44000003}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 176
+      y: 4
+      width: 22
+      height: 25
+    spriteID: 1a84e574ed9c4478d81856d3a4fd4165
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 176, y: 4}
+  - name: cempasuchil-animated-v1_Frame_38
+    originalName: 
+    pivot: {x: 0.5263158, y: -0.21428573}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 176
+      y: 143
+      width: 19
+      height: 28
+    spriteID: e079eeb8e87a04dbb964b9029e0e4fb9
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 176, y: 143}
+  - name: cempasuchil-animated-v1_Frame_39
+    originalName: 
+    pivot: {x: 0.5555556, y: -0.14285715}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 232
+      y: 62
+      width: 18
+      height: 28
+    spriteID: aa877a7f78d1a4217834d96f488001ba
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 232, y: 62}
+  - name: cempasuchil-animated-v1_Frame_40
+    originalName: 
+    pivot: {x: 0.5217391, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 89
+      y: 103
+      width: 23
+      height: 25
+    spriteID: 42f5deabc70cd4412be58330ba4e14d1
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 89, y: 103}
+  - name: cempasuchil-animated-v1_Frame_41
+    originalName: 
+    pivot: {x: 0.52, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 206
+      y: 163
+      width: 25
+      height: 20
+    spriteID: 486bd7ee2ee3749dba3f2cf2c457e524
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 206, y: 163}
+  - name: cempasuchil-animated-v1_Frame_42
+    originalName: 
+    pivot: {x: 0.5217391, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 89
+      y: 136
+      width: 23
+      height: 25
+    spriteID: 208a5360005bc4393a7d9235e6b7b74c
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 89, y: 136}
+  - name: cempasuchil-animated-v1_Frame_43
+    originalName: 
+    pivot: {x: 0.52380955, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 176
+      y: 37
+      width: 21
+      height: 26
+    spriteID: 35fc5111716e344739de2ade8949caa2
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 176, y: 37}
+  - name: cempasuchil-animated-v1_Frame_44
+    originalName: 
+    pivot: {x: 0.5263158, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 149
+      y: 78
+      width: 19
+      height: 29
+    spriteID: 3b8d15fe0dd6c404aa2e8670648ed325
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 149, y: 78}
+  - name: cempasuchil-animated-v1_Frame_45
+    originalName: 
+    pivot: {x: 0.5263158, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 89
+      y: 207
+      width: 19
+      height: 30
+    spriteID: 8822ecedc230d4da89156f27d84312f7
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 89, y: 207}
+  - name: cempasuchil-animated-v1_Frame_46
+    originalName: 
+    pivot: {x: 0.5263158, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 149
+      y: 115
+      width: 19
+      height: 29
+    spriteID: 2712b0595ed5e494ba928d8161bf38e3
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 149, y: 115}
+  - name: cempasuchil-animated-v1_Frame_47
+    originalName: 
+    pivot: {x: 0.5263158, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 149
+      y: 152
+      width: 19
+      height: 29
+    spriteID: 1894d69ef62954b63ab922d7fd59c97a
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 149, y: 152}
+  spriteSheetImportData: []
+  asepriteLayers:
+  - layerIndex: 0
+    guid: -94982416
+    name: cempasuchil-animated-v1
+    layerFlags: 0
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: cempasuchil-animated-v1_Frame_0
+      frameIndex: 0
+      cellRect:
+        x: 10
+        y: 0
+        width: 19
+        height: 30
+      spriteId: 00617cd1c3bea41daab7a6c54c0db39d
+    - name: cempasuchil-animated-v1_Frame_1
+      frameIndex: 1
+      cellRect:
+        x: 9
+        y: 0
+        width: 21
+        height: 28
+      spriteId: 0df3ba557cc48407f843584c44c431ca
+    - name: cempasuchil-animated-v1_Frame_2
+      frameIndex: 2
+      cellRect:
+        x: 10
+        y: 0
+        width: 19
+        height: 29
+      spriteId: dc8609d3ea1154789900af7840fdce4d
+    - name: cempasuchil-animated-v1_Frame_3
+      frameIndex: 3
+      cellRect:
+        x: 9
+        y: 0
+        width: 21
+        height: 27
+      spriteId: d0fa0d8ffaae0467ab119a84c9ce37a1
+    - name: cempasuchil-animated-v1_Frame_4
+      frameIndex: 4
+      cellRect:
+        x: 8
+        y: 0
+        width: 23
+        height: 25
+      spriteId: b7c1c4d5850814104a2203ade341d94e
+    - name: cempasuchil-animated-v1_Frame_5
+      frameIndex: 5
+      cellRect:
+        x: 7
+        y: 0
+        width: 25
+        height: 21
+      spriteId: 16d098d31e70647529d7564990f84ee6
+    - name: cempasuchil-animated-v1_Frame_6
+      frameIndex: 6
+      cellRect:
+        x: 11
+        y: 1
+        width: 17
+        height: 35
+      spriteId: d4152408ab9d04d67992bf57579633aa
+    - name: cempasuchil-animated-v1_Frame_7
+      frameIndex: 7
+      cellRect:
+        x: 8
+        y: 0
+        width: 23
+        height: 25
+      spriteId: 99bde3c324f694212943a29a2df4a32e
+    - name: cempasuchil-animated-v1_Frame_8
+      frameIndex: 8
+      cellRect:
+        x: 10
+        y: 0
+        width: 19
+        height: 29
+      spriteId: 9addf3e7c94f8429596aeafe691fd615
+    - name: cempasuchil-animated-v1_Frame_9
+      frameIndex: 9
+      cellRect:
+        x: 10
+        y: 0
+        width: 19
+        height: 30
+      spriteId: 9421be15777f546368e54ed6e854ead2
+    - name: cempasuchil-animated-v1_Frame_10
+      frameIndex: 10
+      cellRect:
+        x: 9
+        y: 0
+        width: 21
+        height: 28
+      spriteId: ab6670685e45840d9b5230cae8fad7c5
+    - name: cempasuchil-animated-v1_Frame_11
+      frameIndex: 11
+      cellRect:
+        x: 10
+        y: 0
+        width: 19
+        height: 29
+      spriteId: 6e66ac40ba9104fb899b0a90bacc5f5f
+    - name: cempasuchil-animated-v1_Frame_12
+      frameIndex: 12
+      cellRect:
+        x: 11
+        y: 0
+        width: 19
+        height: 29
+      spriteId: edf8397aaa0d74f77aabfddd61c12a1d
+    - name: cempasuchil-animated-v1_Frame_13
+      frameIndex: 13
+      cellRect:
+        x: 12
+        y: 0
+        width: 18
+        height: 30
+      spriteId: 8d7e998fa671b40df90ab5faa6380982
+    - name: cempasuchil-animated-v1_Frame_14
+      frameIndex: 14
+      cellRect:
+        x: 11
+        y: 0
+        width: 18
+        height: 32
+      spriteId: 3c3f8694b5441492682cce1d8575001a
+    - name: cempasuchil-animated-v1_Frame_15
+      frameIndex: 15
+      cellRect:
+        x: 10
+        y: 5
+        width: 21
+        height: 27
+      spriteId: 15835c6324db24a6094e19bdc1185aef
+    - name: cempasuchil-animated-v1_Frame_16
+      frameIndex: 16
+      cellRect:
+        x: 10
+        y: 0
+        width: 20
+        height: 30
+      spriteId: 5d8a9ecc5739d4adaaf25237ef17e400
+    - name: cempasuchil-animated-v1_Frame_17
+      frameIndex: 17
+      cellRect:
+        x: 11
+        y: 0
+        width: 21
+        height: 24
+      spriteId: d43298056b7e34a539478791ac2822e2
+    - name: cempasuchil-animated-v1_Frame_18
+      frameIndex: 18
+      cellRect:
+        x: 12
+        y: 0
+        width: 18
+        height: 29
+      spriteId: 9023e2eb4d189494c8fdcc0674d74b43
+    - name: cempasuchil-animated-v1_Frame_19
+      frameIndex: 19
+      cellRect:
+        x: 11
+        y: 0
+        width: 18
+        height: 32
+      spriteId: 41ca9f266dc4241bd9989b67c55b45df
+    - name: cempasuchil-animated-v1_Frame_20
+      frameIndex: 20
+      cellRect:
+        x: 10
+        y: 5
+        width: 21
+        height: 27
+      spriteId: 98471d2604df04757b9af89ae4cf8907
+    - name: cempasuchil-animated-v1_Frame_21
+      frameIndex: 21
+      cellRect:
+        x: 10
+        y: 0
+        width: 20
+        height: 30
+      spriteId: 3bb6a65ec52344adea082e37ce941a55
+    - name: cempasuchil-animated-v1_Frame_22
+      frameIndex: 22
+      cellRect:
+        x: 11
+        y: 0
+        width: 21
+        height: 24
+      spriteId: 6f737b228c1c044289f542e291713223
+    - name: cempasuchil-animated-v1_Frame_23
+      frameIndex: 23
+      cellRect:
+        x: 12
+        y: 0
+        width: 18
+        height: 29
+      spriteId: f52d1bd97b87441eeab48a4344a0d820
+    - name: cempasuchil-animated-v1_Frame_24
+      frameIndex: 24
+      cellRect:
+        x: 11
+        y: 0
+        width: 18
+        height: 32
+      spriteId: 1deff0ec14ad446848c7382cf2b527c1
+    - name: cempasuchil-animated-v1_Frame_25
+      frameIndex: 25
+      cellRect:
+        x: 10
+        y: 1
+        width: 20
+        height: 30
+      spriteId: f75fe42fb838a41869c2b3e09c7660ce
+    - name: cempasuchil-animated-v1_Frame_26
+      frameIndex: 26
+      cellRect:
+        x: 4
+        y: 0
+        width: 21
+        height: 29
+      spriteId: 83022d619486f4034abfd795d867ab0f
+    - name: cempasuchil-animated-v1_Frame_27
+      frameIndex: 27
+      cellRect:
+        x: 4
+        y: 0
+        width: 23
+        height: 29
+      spriteId: a033a3cac21e04bcc90244ef288d66e5
+    - name: cempasuchil-animated-v1_Frame_28
+      frameIndex: 28
+      cellRect:
+        x: 11
+        y: 0
+        width: 19
+        height: 29
+      spriteId: a8b8ea0c246c24f2fb3ea397a4d3a1b5
+    - name: cempasuchil-animated-v1_Frame_29
+      frameIndex: 29
+      cellRect:
+        x: 17
+        y: 0
+        width: 22
+        height: 30
+      spriteId: ab18fdc4e6c5d448abd3d8a9b4b040fd
+    - name: cempasuchil-animated-v1_Frame_30
+      frameIndex: 30
+      cellRect:
+        x: 11
+        y: 0
+        width: 19
+        height: 29
+      spriteId: 86316e1da04e8429d9929ceaf08d71d7
+    - name: cempasuchil-animated-v1_Frame_31
+      frameIndex: 31
+      cellRect:
+        x: 12
+        y: 0
+        width: 18
+        height: 29
+      spriteId: ce827b86ec6b24b04a30869a9a547b65
+    - name: cempasuchil-animated-v1_Frame_32
+      frameIndex: 32
+      cellRect:
+        x: 10
+        y: 0
+        width: 19
+        height: 28
+      spriteId: 259b8a2d6098c4d3a96e866da9fc341a
+    - name: cempasuchil-animated-v1_Frame_33
+      frameIndex: 33
+      cellRect:
+        x: 10
+        y: 0
+        width: 19
+        height: 28
+      spriteId: 859812a82d80443df984b4a523ca8763
+    - name: cempasuchil-animated-v1_Frame_34
+      frameIndex: 34
+      cellRect:
+        x: 8
+        y: 0
+        width: 23
+        height: 25
+      spriteId: a025729f7f8044c2a9d73d8bb930b9fb
+    - name: cempasuchil-animated-v1_Frame_35
+      frameIndex: 35
+      cellRect:
+        x: 7
+        y: 0
+        width: 25
+        height: 21
+      spriteId: 93162e5181dce4ebe8f84ebea4710384
+    - name: cempasuchil-animated-v1_Frame_36
+      frameIndex: 36
+      cellRect:
+        x: 11
+        y: 1
+        width: 17
+        height: 35
+      spriteId: f8e0bab24076d4805aac9038bea27832
+    - name: cempasuchil-animated-v1_Frame_37
+      frameIndex: 37
+      cellRect:
+        x: 9
+        y: 11
+        width: 22
+        height: 25
+      spriteId: 1a84e574ed9c4478d81856d3a4fd4165
+    - name: cempasuchil-animated-v1_Frame_38
+      frameIndex: 38
+      cellRect:
+        x: 10
+        y: 6
+        width: 19
+        height: 28
+      spriteId: e079eeb8e87a04dbb964b9029e0e4fb9
+    - name: cempasuchil-animated-v1_Frame_39
+      frameIndex: 39
+      cellRect:
+        x: 10
+        y: 4
+        width: 18
+        height: 28
+      spriteId: aa877a7f78d1a4217834d96f488001ba
+    - name: cempasuchil-animated-v1_Frame_40
+      frameIndex: 40
+      cellRect:
+        x: 8
+        y: 0
+        width: 23
+        height: 25
+      spriteId: 42f5deabc70cd4412be58330ba4e14d1
+    - name: cempasuchil-animated-v1_Frame_41
+      frameIndex: 41
+      cellRect:
+        x: 7
+        y: 0
+        width: 25
+        height: 20
+      spriteId: 486bd7ee2ee3749dba3f2cf2c457e524
+    - name: cempasuchil-animated-v1_Frame_42
+      frameIndex: 42
+      cellRect:
+        x: 8
+        y: 0
+        width: 23
+        height: 25
+      spriteId: 208a5360005bc4393a7d9235e6b7b74c
+    - name: cempasuchil-animated-v1_Frame_43
+      frameIndex: 43
+      cellRect:
+        x: 9
+        y: 0
+        width: 21
+        height: 26
+      spriteId: 35fc5111716e344739de2ade8949caa2
+    - name: cempasuchil-animated-v1_Frame_44
+      frameIndex: 44
+      cellRect:
+        x: 10
+        y: 0
+        width: 19
+        height: 29
+      spriteId: 3b8d15fe0dd6c404aa2e8670648ed325
+    - name: cempasuchil-animated-v1_Frame_45
+      frameIndex: 45
+      cellRect:
+        x: 10
+        y: 0
+        width: 19
+        height: 30
+      spriteId: 8822ecedc230d4da89156f27d84312f7
+    - name: cempasuchil-animated-v1_Frame_46
+      frameIndex: 46
+      cellRect:
+        x: 10
+        y: 0
+        width: 19
+        height: 29
+      spriteId: 2712b0595ed5e494ba928d8161bf38e3
+    - name: cempasuchil-animated-v1_Frame_47
+      frameIndex: 47
+      cellRect:
+        x: 10
+        y: 0
+        width: 19
+        height: 29
+      spriteId: 1894d69ef62954b63ab922d7fd59c97a
+    linkedCells: []
+    parentIndex: -1
+  platformSettings: []
+  secondarySpriteTextures: []
+  spritePackingTag: 
+  canvasSize: {x: 40, y: 40}
