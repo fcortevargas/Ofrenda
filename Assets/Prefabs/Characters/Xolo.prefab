@@ -198,46 +198,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49ef18559dce241f59706a9b6c57a93c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _groundLayers:
+  groundLayers:
     serializedVersion: 2
     m_Bits: 64
-  _groundThreshold: 0.6
-  _colliderOffset: {x: 0.3, y: 0, z: 0}
-  _canPlayerMove: 1
-  _isOnGround: 0
-  _isTurning: 0
-  _canJumpAgain: 0
-  _isJumping: 0
-  _maxSpeed: 12
-  _maxAcceleration: 50
-  _maxDecceleration: 40
-  _maxTurnSpeed: 15
-  _maxAirAcceleration: 50
-  _maxAirDeceleration: 40
-  _maxAirTurnSpeed: 20
-  _friction: 0.9
-  _velocity: {x: 0, y: 0}
-  _targetVelocity: {x: 0, y: 0}
-  _maxJumpHeight: 5
-  _timeToJumpApex: 0.42
-  _upwardGravityMultiplier: 1.2
-  _downwardGravityMultiplier: 1.6
-  _maxNumberJumps: 0
-  _enableVariableJumpHeight: 0
-  _jumpCutOff: 3
-  _fallSpeedLimit: 40
-  _coyoteTime: 0.15
-  _jumpBuffer: 0
-  _jumpSpeed: 0
-  _defaultGravityScale: 1
-  _gravityMultiplier: 0
-  _executeJump: 0
-  _jumpBufferCounter: 0
-  _coyoteTimeCounter: 0
-  _pressingMove: 0
-  _pressedJump: 0
-  _pressingJump: 0
-  _horizontalInput: 0
+  groundThreshold: 0.6
+  colliderOffset: {x: 0, y: 0, z: 0}
 --- !u!95 &2214646747636204359
 Animator:
   serializedVersion: 5

@@ -1,8 +1,5 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class PlayerControl : MonoBehaviour
 {
@@ -10,7 +7,11 @@ public class PlayerControl : MonoBehaviour
     // Player's rigidbody for physics calculations
     private Rigidbody2D _rigidbody2D;
     // Specify which layers should be treated as ground
-    private LayerMask _groundLayers;
+    [SerializeField] private LayerMask groundLayers;
+    #endregion
+
+    #region COMPUTING CONSTANTS
+    private const float Tolerance = 0.001f;
     #endregion
 
     #region STATE CONSTANTS
@@ -73,25 +74,25 @@ public class PlayerControl : MonoBehaviour
     private const float DownwardGravityMultiplier = 1.6f;
     // How many times can you jump in the air?
     private const int MaxNumberJumps = 0;
-    // Should the character drop when you let go of jump?
-    private const bool EnableVariableJumpHeight = false;
     // Gravity multiplier when you let go of jump
     private const float JumpCutOff = 3f;
     // The fastest speed the character can fall
     private const float FallSpeedLimit = 40f;
     // How long should coyote time last?
     private const float CoyoteTime = 0.15f;
-    // How far from ground should we cache your jump?
-    private const float JumpBuffer = 0f;
     #endregion
 
     #region JUMP CONTROL VARIABLES
     // The player's jump speed
     private float _jumpSpeed;
+    // Should the character drop when you let go of jump?
+    public bool enableVariableJumpHeight;
     // How much will the gravity scale be scaled by?
     private float _gravityMultiplier;
     // Switch to execute jump
     private bool _executeJump;
+    // How far from ground should we cache your jump?
+    public float jumpBuffer;
     // Counter that tracks the time to determine if a jump should be queued
     private float _jumpBufferCounter;
     // Counter that tracks the time to determine if a coyote jump should be executed
@@ -197,7 +198,7 @@ public class PlayerControl : MonoBehaviour
         if (_pressingMove)
         {
             //If the sign (i.e. positive or negative) of our input direction doesn't match our movement, it means we're turning around and so should use the turn speed.
-            if (Mathf.Sign(_horizontalInput) != Mathf.Sign(_velocity.x))
+            if (Math.Abs(Mathf.Sign(_horizontalInput) - Mathf.Sign(_velocity.x)) > Tolerance)
             {
                 maxSpeedChange = turnSpeed * Time.deltaTime;
                 _isTurning = true;
@@ -241,7 +242,7 @@ public class PlayerControl : MonoBehaviour
             _coyoteTimeCounter = 0;
 
             //If we have double jump on, allow us to jump again (but only once)
-            _canJumpAgain = (MaxNumberJumps == 1 && _canJumpAgain == false);
+            _canJumpAgain = MaxNumberJumps == 1 && !_canJumpAgain;
 
             // Determine the power of the jump, based on our gravity and stats
             _jumpSpeed = Mathf.Sqrt(-2f * Physics2D.gravity.y * _rigidbody2D.gravityScale * MaxJumpHeight);
@@ -262,7 +263,7 @@ public class PlayerControl : MonoBehaviour
             _isJumping = true;
         }
 
-        if (JumpBuffer == 0)
+        if (jumpBuffer == 0)
         {
             //If we don't have a jump buffer, then turn off desiredJump immediately after hitting jumping
             _pressedJump = false;
@@ -288,7 +289,7 @@ public class PlayerControl : MonoBehaviour
             else
             {
                 //If we're using variable jump height...)
-                if (EnableVariableJumpHeight)
+                if (enableVariableJumpHeight)
                 {
                     // Apply upward multiplier if player is rising and holding jump
                     if (_pressingJump && _isJumping)
@@ -342,7 +343,7 @@ public class PlayerControl : MonoBehaviour
     private void HandleJumpBuffering()
     {
         //Jump buffer allows us to queue up a jump, which will play when we next hit the ground
-        if (JumpBuffer > 0)
+        if (jumpBuffer > 0)
         {
             //Instead of immediately turning off _pressedJump, start counting up...
             //All the while, the Jump function will repeatedly be fired off
@@ -350,7 +351,7 @@ public class PlayerControl : MonoBehaviour
             {
                 _jumpBufferCounter += Time.deltaTime;
 
-                if (_jumpBufferCounter > JumpBuffer)
+                if (_jumpBufferCounter > jumpBuffer)
                 {
                     //If time exceeds the jump buffer, turn off _pressedJump
                     _pressedJump = false;
@@ -378,7 +379,7 @@ public class PlayerControl : MonoBehaviour
     private bool IsPlayerOnGround()
     {
         Vector3 origin = transform.position + new Vector3(0, 0.5f, 0);
-        return Physics2D.Raycast(origin + colliderOffset, Vector2.down, groundThreshold, _groundLayers) || Physics2D.Raycast(origin - colliderOffset, Vector2.down, groundThreshold, _groundLayers);
+        return Physics2D.Raycast(origin + colliderOffset, Vector2.down, groundThreshold, groundLayers) || Physics2D.Raycast(origin - colliderOffset, Vector2.down, groundThreshold, groundLayers);
     }
 
     private void OnDrawGizmos()
