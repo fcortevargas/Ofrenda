@@ -234,41 +234,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   groundThreshold: 0.6
-  colliderOffset: {x: 0.1, y: 0, z: 0}
-  canPlayerMove: 1
-  isTurning: 0
-  canJumpAgain: 0
-  isJumping: 0
-  maxSpeed: 12
-  maxAcceleration: 50
-  maxDecceleration: 40
-  maxTurnSpeed: 15
-  maxAirAcceleration: 50
-  maxAirDeceleration: 40
-  maxAirTurnSpeed: 20
-  friction: 0.9
-  velocity: {x: 0, y: 0}
-  targetVelocity: {x: 0, y: 0}
-  maxJumpHeight: 5
-  timeToJumpApex: 0.42
-  upwardGravityMultiplier: 1.2
-  downwardGravityMultiplier: 1.6
-  maxNumberJumps: 0
+  colliderOffset: {x: 0, y: 0, z: 0}
   enableVariableJumpHeight: 0
-  jumpCutOff: 3
-  fallSpeedLimit: 40
-  coyoteTime: 0.15
   jumpBuffer: 0
-  jumpSpeed: 0
-  defaultGravityScale: 1
-  gravityMultiplier: 0
-  executeJump: 0
-  jumpBufferCounter: 0
-  coyoteTimeCounter: 0
-  pressingMove: 0
-  pressedJump: 0
-  pressingJump: 0
-  horizontalInput: 0
 --- !u!95 &1127046760231852702
 Animator:
   serializedVersion: 5
@@ -399,4 +367,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8f0953d7808d46178b9f071823232e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridGameObject: {fileID: 0}
+  requiredHoldTime: 2
