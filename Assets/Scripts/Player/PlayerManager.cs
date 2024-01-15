@@ -4,26 +4,26 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
     public GameObject[] characters;
-    public int characterIndex = 0;
+    public int characterIndex;
 
     public GameObject player;
     public Vector3 playerPosition;
 
     public GameObject soul;
-    private SoulControl soulController;
+    private Soul _soulController;
 
     public GameObject virtualCamera;
-    private CinemachineVirtualCamera cinemachineVirtualCamera;
+    private CinemachineVirtualCamera _cinemachineVirtualCamera;
     
     private void Awake()
     {
-        soulController = soul.GetComponent<SoulControl>();
-        cinemachineVirtualCamera = virtualCamera.GetComponent<CinemachineVirtualCamera>();
+        _soulController = soul.GetComponent<Soul>();
+        _cinemachineVirtualCamera = virtualCamera.GetComponent<CinemachineVirtualCamera>();
 
         player = Instantiate(characters[characterIndex], Vector3.back, Quaternion.identity);
 
-        soulController.player = player;
-        cinemachineVirtualCamera.Follow = player.transform;
+        _soulController.player = player;
+        _cinemachineVirtualCamera.Follow = player.transform;
 
         playerPosition = player.transform.position;
     }
@@ -36,11 +36,10 @@ public class PlayerManager : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             SwitchCharacter();
-            Debug.Log("player switched");
         }
     }
 
-    public void SwitchCharacter()
+    private void SwitchCharacter()
     {
         characterIndex++;
 
@@ -52,7 +51,7 @@ public class PlayerManager : MonoBehaviour
         Destroy(player);
 
         player = Instantiate(characters[characterIndex], playerPosition, Quaternion.identity);
-        soulController.player = player;
-        cinemachineVirtualCamera.Follow = player.transform;
+        _soulController.player = player;
+        _cinemachineVirtualCamera.Follow = player.transform;
     }
 }
