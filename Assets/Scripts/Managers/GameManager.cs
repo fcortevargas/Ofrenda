@@ -1,32 +1,29 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     // Create a singleton instance
-    private static GameManager instance; 
+    private static GameManager _instance; 
 
     public static GameManager Instance
     {
         get
         {
-            if (instance == null)
+            if (_instance == null)
             {
                 Debug.LogError("Game Manager is null.");
             }
 
-            return instance;
+            return _instance;
         }
     }
 
     private void Awake()
     {
-        if (instance == null)
+        if (_instance == null)
         {
-            instance = this;
+            _instance = this;
             DontDestroyOnLoad(gameObject);
         }
         else
