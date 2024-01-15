@@ -9,20 +9,17 @@ public class PlayerManager : MonoBehaviour
     public GameObject player;
     public Vector3 playerPosition;
 
-    public GameObject soul;
-    private Soul _soulController;
-
     public GameObject virtualCamera;
     private CinemachineVirtualCamera _cinemachineVirtualCamera;
     
     private void Awake()
     {
-        _soulController = soul.GetComponent<Soul>();
         _cinemachineVirtualCamera = virtualCamera.GetComponent<CinemachineVirtualCamera>();
 
         player = Instantiate(characters[characterIndex], Vector3.back, Quaternion.identity);
 
-        _soulController.player = player;
+        AssignPlayerToSoul();
+        
         _cinemachineVirtualCamera.Follow = player.transform;
 
         playerPosition = player.transform.position;
@@ -51,7 +48,19 @@ public class PlayerManager : MonoBehaviour
         Destroy(player);
 
         player = Instantiate(characters[characterIndex], playerPosition, Quaternion.identity);
-        _soulController.player = player;
+
+        AssignPlayerToSoul();
+        
         _cinemachineVirtualCamera.Follow = player.transform;
+    }
+
+    private void AssignPlayerToSoul()
+    {
+        var isXolo = player.CompareTag("Xolo");
+        
+        if (isXolo)
+        {
+            Soul.Player = player;
+        }
     }
 }
