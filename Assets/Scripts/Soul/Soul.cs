@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using Pathfinding;
+using UnityEngine.Serialization;
 
 public class Soul : MonoBehaviour
 {
@@ -17,15 +18,13 @@ public class Soul : MonoBehaviour
 
     // The minimum distance to consider a waypoint as reached
     private const float NextWaypointDistance = 1f; 
-    // The min distance in which the soul can "see" the portal
-    private const float MinYDistanceToPortal = 1f; 
-    // The maximum distance in which the soul can "see" the player
-    private const float MaxYDistanceToPlayer= 5f; 
     // The distance threshold to trigger the faster speed in case the soul is either close enough to the portal
     // or far enough from the player
     private const float FastSpeedDistanceThreshold = 5f; 
+    // The maximum distance in which the soul can "see" the player
     public float maximumDistanceToPlayer = 10f;
-    public float minimumDistanceToPortal = 5f;
+    // The maximum distance in which the soul can "see" the portal
+    public float maximumDistanceToPortal = 5f;
 
     private const float NormalSpeed = 250; // The normal movement speed of the soul
     private const float FastSpeed = 400; // The faster movement speed of the soul
@@ -40,6 +39,9 @@ public class Soul : MonoBehaviour
     private Rigidbody2D _rb; // The Rigidbody2D component for the soul's physics
 
     private Target _target;
+    
+    // Variables to store line points for drawing gizmos
+    public LayerMask obstacleLayers;
 
     private struct Target
     {
@@ -53,17 +55,32 @@ public class Soul : MonoBehaviour
         _seeker = GetComponent<Seeker>(); // Get the Seeker component attached to this GameObject
         _rb = GetComponent<Rigidbody2D>(); // Get the Rigidbody2D component attached to this GameObject
 
-        // Call UpdatePath method repeatedly with a delay of 0.5 seconds
-        InvokeRepeating(nameof(UpdatePath), 0f, .5f);
+        // Call UpdatePath method repeatedly with a delay of 0.2 seconds
+        InvokeRepeating(nameof(UpdatePath), 0f, .2f);
     }
 
-    private bool IsTargetInView(Transform target, float yDistanceThreshold)
+    private bool IsTargetInView(GameObject target, float sightRange)
     {
-        // Get the y distance between the soul and the target
-        var yDistanceToTarget = Math.Abs(transform.position.y - target.position.y);
+        if (target == null)
+            return false;
+        
+        Vector2 observerPosition = transform.position;
+        Vector2 targetPosition = target.transform.position;
 
-        // If that distance is small enough, then the portal is in view
-        return yDistanceToTarget < yDistanceThreshold;
+        // Check distance
+        if (Vector2.Distance(observerPosition, targetPosition) < sightRange)
+            return true;
+
+        // Check line of sight
+        Vector2 directionToTarget = (targetPosition - observerPosition).normalized;
+        RaycastHit2D hit = Physics2D.Raycast(observerPosition, directionToTarget, sightRange, obstacleLayers);
+
+        if (hit.collider != null && hit.collider.gameObject == target)
+        {
+            return Vector2.Distance(observerPosition, targetPosition) > sightRange;
+        }
+
+        return false;
     }
 
     // Select the closest player ghost (left or right) for the soul to follow or the portal if it is close enough
@@ -78,29 +95,31 @@ public class Soul : MonoBehaviour
         };
 
         // If player game object is not defined, return an empty target
-        if (_player == null) return closestTarget;
+        if (_player == null) 
+            return closestTarget;
         
-        var leftGhost = _player.transform.Find("Left Ghost"); // Find the left player ghost
-        var rightGhost = _player.transform.Find("Right Ghost"); // Find the right player ghost
+        var leftGhost = _player.transform.Find("Left Ghost").gameObject; // Find the left player ghost
+        var rightGhost = _player.transform.Find("Right Ghost").gameObject; // Find the right player ghost
 
         // Calculate distances to both ghosts and the portal
         var position = transform.position;
-        var distanceToLeftGhost = Vector2.Distance(position, leftGhost.position);
-        var distanceToRightGhost = Vector2.Distance(position, rightGhost.position);
+        var distanceToLeftGhost = Vector2.Distance(position, leftGhost.transform.position);
+        var distanceToRightGhost = Vector2.Distance(position, rightGhost.transform.position);
         var minGhostDistance = Math.Min(distanceToLeftGhost, distanceToRightGhost);
-
-        if (!(minGhostDistance < maximumDistanceToPlayer) || !IsTargetInView(_player.transform, MaxYDistanceToPlayer))
+        var closestGhost = distanceToLeftGhost < distanceToRightGhost ? leftGhost : rightGhost;
+        
+        if (!IsTargetInView(_player, maximumDistanceToPlayer))
             return closestTarget;
 
         // Determine the closest player ghost based on distances
-        closestTarget.Transform = distanceToLeftGhost < distanceToRightGhost ? leftGhost : rightGhost;
+        closestTarget.Transform = closestGhost.transform;
         closestTarget.Distance = minGhostDistance;
         closestTarget.Type = "player";
 
         var distanceToPortal = Vector2.Distance(transform.position, portal.transform.position);
-
+        
         // If the portal is not closer than a certain distance threshold and is not in view, go towards player
-        if (!(distanceToPortal < minimumDistanceToPortal) || !IsTargetInView(portal.transform, MinYDistanceToPortal)) 
+        if (!IsTargetInView(portal, maximumDistanceToPortal)) 
             return closestTarget; 
         
         closestTarget.Transform = portal.transform;

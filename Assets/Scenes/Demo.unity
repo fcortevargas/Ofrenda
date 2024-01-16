@@ -599,7 +599,6 @@ MonoBehaviour:
   characterIndex: 0
   player: {fileID: 0}
   playerPosition: {x: 0, y: 0, z: 0}
-  soul: {fileID: 1700464427}
   virtualCamera: {fileID: 677962506}
 --- !u!4 &585971468
 Transform:
@@ -69300,9 +69299,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0ffa8c09d07d4e24a3059d10ce49306, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
   portal: {fileID: 909807747}
+  maximumDistanceToPlayer: 10
+  maximumDistanceToPortal: 5
   speed: 0
+  obstacleLayers:
+    serializedVersion: 2
+    m_Bits: 192
 --- !u!114 &1700464431
 MonoBehaviour:
   m_ObjectHideFlags: 0
