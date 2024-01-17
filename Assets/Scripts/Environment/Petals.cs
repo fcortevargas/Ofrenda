@@ -29,7 +29,7 @@ public class Petals : MonoBehaviour
     {
         // Finding the grid GameObject and getting the Tilemap component from its child named "Surface"
         _grid = GameObject.Find("Grid");
-        _surface = _grid.transform.Find("Surface").GetComponent<Tilemap>();
+        _surface = _grid.transform.Find("Surfaces").GetComponent<Tilemap>();
         _modifiedTiles = new HashSet<Vector3Int>();
     }
 

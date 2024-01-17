@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 1699525297712325784}
   - component: {fileID: 3666629694385147040}
   m_Layer: 3
-  m_Name: Spirit
-  m_TagString: Spirit
+  m_Name: Soul
+  m_TagString: Soul
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

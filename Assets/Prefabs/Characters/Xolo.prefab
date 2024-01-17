@@ -43,7 +43,7 @@ GameObject:
   m_Layer: 7
   m_Name: Right Ghost
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -74,7 +74,7 @@ GameObject:
   m_Layer: 7
   m_Name: Left Ghost
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -203,6 +203,8 @@ MonoBehaviour:
     m_Bits: 64
   groundThreshold: 0.6
   colliderOffset: {x: 0, y: 0, z: 0}
+  enableVariableJumpHeight: 0
+  jumpBuffer: 0
 --- !u!95 &2214646747636204359
 Animator:
   serializedVersion: 5

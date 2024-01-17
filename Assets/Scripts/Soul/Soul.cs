@@ -21,10 +21,10 @@ public class Soul : MonoBehaviour
     // The distance threshold to trigger the faster speed in case the soul is either close enough to the portal
     // or far enough from the player
     private const float FastSpeedDistanceThreshold = 5f; 
-    // The maximum distance in which the soul can "see" the player
-    public float maximumDistanceToPlayer = 10f;
-    // The maximum distance in which the soul can "see" the portal
-    public float maximumDistanceToPortal = 5f;
+    // The maximum distances in the x and y direction in which the soul can "see" the player
+    public Vector2 maximumDistanceToPlayer = new(20f, 8f);
+    // The maximum distances in the x and y direction in which the soul can "see" the portal
+    public Vector2 maximumDistanceToPortal = new(20f, 5f);
 
     private const float NormalSpeed = 250; // The normal movement speed of the soul
     private const float FastSpeed = 400; // The faster movement speed of the soul
@@ -39,8 +39,7 @@ public class Soul : MonoBehaviour
     private Rigidbody2D _rb; // The Rigidbody2D component for the soul's physics
 
     private Target _target;
-    
-    // Variables to store line points for drawing gizmos
+
     public LayerMask obstacleLayers;
 
     private struct Target
@@ -59,7 +58,7 @@ public class Soul : MonoBehaviour
         InvokeRepeating(nameof(UpdatePath), 0f, .2f);
     }
 
-    private bool IsTargetInView(GameObject target, float sightRange)
+    private bool IsTargetInView(GameObject target, Vector2 sightRange)
     {
         if (target == null)
             return false;
@@ -67,20 +66,15 @@ public class Soul : MonoBehaviour
         Vector2 observerPosition = transform.position;
         Vector2 targetPosition = target.transform.position;
 
-        // Check distance
-        if (Vector2.Distance(observerPosition, targetPosition) < sightRange)
-            return true;
-
+        // var hit = Physics2D.Raycast(observerPosition, Vector2.right, 2.5f, obstacleLayers);
+        //
+        // if (hit.collider != null)
+        //     return false;
+        
         // Check line of sight
-        Vector2 directionToTarget = (targetPosition - observerPosition).normalized;
-        RaycastHit2D hit = Physics2D.Raycast(observerPosition, directionToTarget, sightRange, obstacleLayers);
-
-        if (hit.collider != null && hit.collider.gameObject == target)
-        {
-            return Vector2.Distance(observerPosition, targetPosition) > sightRange;
-        }
-
-        return false;
+        var distanceToTarget = targetPosition - observerPosition;
+        
+        return Mathf.Abs(distanceToTarget.x) < sightRange.x && Mathf.Abs(distanceToTarget.y) < sightRange.y;
     }
 
     // Select the closest player ghost (left or right) for the soul to follow or the portal if it is close enough
@@ -98,29 +92,52 @@ public class Soul : MonoBehaviour
         if (_player == null) 
             return closestTarget;
         
-        var leftGhost = _player.transform.Find("Left Ghost").gameObject; // Find the left player ghost
-        var rightGhost = _player.transform.Find("Right Ghost").gameObject; // Find the right player ghost
+        if (!IsTargetInView(_player, maximumDistanceToPlayer))
+            return closestTarget;
+        
+        var playerLeftGhost = _player.transform.Find("Left Ghost").gameObject; 
+        var playerRightGhost = _player.transform.Find("Right Ghost").gameObject;
 
         // Calculate distances to both ghosts and the portal
         var position = transform.position;
-        var distanceToLeftGhost = Vector2.Distance(position, leftGhost.transform.position);
-        var distanceToRightGhost = Vector2.Distance(position, rightGhost.transform.position);
-        var minGhostDistance = Math.Min(distanceToLeftGhost, distanceToRightGhost);
-        var closestGhost = distanceToLeftGhost < distanceToRightGhost ? leftGhost : rightGhost;
         
-        if (!IsTargetInView(_player, maximumDistanceToPlayer))
-            return closestTarget;
+        var distanceToPlayerLeftGhost = Vector2.Distance(position, playerLeftGhost.transform.position);
+        var distanceToPlayerRightGhost = Vector2.Distance(position, playerRightGhost.transform.position);
+        var minPlayerGhostDistance = Math.Min(distanceToPlayerLeftGhost, distanceToPlayerRightGhost);
+        var closestPlayerGhost =
+            distanceToPlayerLeftGhost < distanceToPlayerRightGhost ? playerLeftGhost : playerRightGhost;
+        
+        var obstacle = GameObject.Find("Obstacles"); 
+        
+        var obstacleLeftGhost = obstacle.transform.Find("Left Ghost").gameObject; 
+        var obstacleRightGhost = obstacle.transform.Find("Right Ghost").gameObject;
 
+        var distanceToObstacleLeftGhost = Vector2.Distance(position, obstacleLeftGhost.transform.position);
+        var distanceToObstacleRightGhost = Vector2.Distance(position, obstacleRightGhost.transform.position);
+        var minObstacleGhostDistance = Math.Min(distanceToPlayerLeftGhost, distanceToPlayerRightGhost);
+        var closestObstacleGhost = distanceToObstacleLeftGhost < distanceToObstacleRightGhost
+            ? obstacleLeftGhost
+            : obstacleRightGhost;
+        
         // Determine the closest player ghost based on distances
-        closestTarget.Transform = closestGhost.transform;
-        closestTarget.Distance = minGhostDistance;
+        closestTarget.Transform = closestObstacleGhost.transform;
+        closestTarget.Distance = minObstacleGhostDistance;
+        closestTarget.Type = "obstacle";
+        
+        // If the obstacle is closer than a certain distance threshold go towards obstacle ghost
+        if (minObstacleGhostDistance < 2) 
+            return closestTarget; 
+        
+        // Determine the closest player ghost based on distances
+        closestTarget.Transform = closestPlayerGhost.transform;
+        closestTarget.Distance = minPlayerGhostDistance;
         closestTarget.Type = "player";
-
-        var distanceToPortal = Vector2.Distance(transform.position, portal.transform.position);
         
         // If the portal is not closer than a certain distance threshold and is not in view, go towards player
         if (!IsTargetInView(portal, maximumDistanceToPortal)) 
             return closestTarget; 
+        
+        var distanceToPortal = Vector2.Distance(transform.position, portal.transform.position);
         
         closestTarget.Transform = portal.transform;
         closestTarget.Distance = distanceToPortal;

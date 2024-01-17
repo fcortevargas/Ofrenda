@@ -142,6 +142,8 @@ MonoBehaviour:
     m_Bits: 64
   groundThreshold: 0.6
   colliderOffset: {x: 0, y: 0, z: 0}
+  enableVariableJumpHeight: 0
+  jumpBuffer: 0
 --- !u!95 &1465965339557936936
 Animator:
   serializedVersion: 5

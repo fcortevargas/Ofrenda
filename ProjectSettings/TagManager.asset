@@ -5,27 +5,28 @@ TagManager:
   serializedVersion: 2
   tags:
   - Surface
-  - Spirit
   - Background
   - Portal
   - Candle
   - Fire
   - Cempasuchil
   - Xolo
+  - Obstacle
+  - Soul
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Soul
+  - Souls
   - Water
   - UI
-  - Surface
+  - Surfaces
   - Player
-  - Portal
-  - Background
+  - Portals
+  - Candles
+  - Obstacles
   - Foreground
-  - Candle
-  - 
+  - Background
   - 
   - 
   - 
@@ -57,6 +58,9 @@ TagManager:
     locked: 0
   - name: Portal
     uniqueID: 1532311193
+    locked: 0
+  - name: Obstacle
+    uniqueID: 3854445437
     locked: 0
   - name: Surface
     uniqueID: 2601390477
