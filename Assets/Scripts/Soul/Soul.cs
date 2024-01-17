@@ -95,17 +95,7 @@ public class Soul : MonoBehaviour
         if (!IsTargetInView(_player, maximumDistanceToPlayer))
             return closestTarget;
         
-        var playerLeftGhost = _player.transform.Find("Left Ghost").gameObject; 
-        var playerRightGhost = _player.transform.Find("Right Ghost").gameObject;
-
-        // Calculate distances to both ghosts and the portal
         var position = transform.position;
-        
-        var distanceToPlayerLeftGhost = Vector2.Distance(position, playerLeftGhost.transform.position);
-        var distanceToPlayerRightGhost = Vector2.Distance(position, playerRightGhost.transform.position);
-        var minPlayerGhostDistance = Math.Min(distanceToPlayerLeftGhost, distanceToPlayerRightGhost);
-        var closestPlayerGhost =
-            distanceToPlayerLeftGhost < distanceToPlayerRightGhost ? playerLeftGhost : playerRightGhost;
         
         var obstacle = GameObject.Find("Obstacles"); 
         
@@ -114,19 +104,30 @@ public class Soul : MonoBehaviour
 
         var distanceToObstacleLeftGhost = Vector2.Distance(position, obstacleLeftGhost.transform.position);
         var distanceToObstacleRightGhost = Vector2.Distance(position, obstacleRightGhost.transform.position);
-        var minObstacleGhostDistance = Math.Min(distanceToPlayerLeftGhost, distanceToPlayerRightGhost);
+        var minObstacleGhostDistance = Math.Min(distanceToObstacleLeftGhost, distanceToObstacleRightGhost);
         var closestObstacleGhost = distanceToObstacleLeftGhost < distanceToObstacleRightGhost
             ? obstacleLeftGhost
             : obstacleRightGhost;
         
-        // Determine the closest player ghost based on distances
         closestTarget.Transform = closestObstacleGhost.transform;
         closestTarget.Distance = minObstacleGhostDistance;
         closestTarget.Type = "obstacle";
+
+        var hitRight = Physics2D.Raycast(position, Vector2.right, 1f, obstacleLayers);
+        var hitLeft = Physics2D.Raycast(position, Vector2.left, 1f, obstacleLayers);
         
         // If the obstacle is closer than a certain distance threshold go towards obstacle ghost
-        if (minObstacleGhostDistance < 2) 
-            return closestTarget; 
+        if (hitRight.collider != null || hitLeft.collider != null) 
+            return closestTarget;
+        
+        var playerLeftGhost = _player.transform.Find("Left Ghost").gameObject; 
+        var playerRightGhost = _player.transform.Find("Right Ghost").gameObject;
+        
+        var distanceToPlayerLeftGhost = Vector2.Distance(position, playerLeftGhost.transform.position);
+        var distanceToPlayerRightGhost = Vector2.Distance(position, playerRightGhost.transform.position);
+        var minPlayerGhostDistance = Math.Min(distanceToPlayerLeftGhost, distanceToPlayerRightGhost);
+        var closestPlayerGhost =
+            distanceToPlayerLeftGhost < distanceToPlayerRightGhost ? playerLeftGhost : playerRightGhost;
         
         // Determine the closest player ghost based on distances
         closestTarget.Transform = closestPlayerGhost.transform;
