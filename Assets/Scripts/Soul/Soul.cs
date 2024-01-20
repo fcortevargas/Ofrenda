@@ -1,18 +1,16 @@
 using System;
+using System.Linq;
 using UnityEngine;
 using Pathfinding;
+using Unity.VisualScripting;
 using UnityEngine.Serialization;
 
 public class Soul : MonoBehaviour
 {
     // The player GameObject that the soul is following
-    private static GameObject _player;
-    
-    public static GameObject Player
-    {
-        get => _player;
-        set => _player = value;
-    }
+
+    public static GameObject Player { get; set; }
+
     // The portal GameObject that the soul will go to if close enough
     public GameObject portal; 
 
@@ -66,16 +64,15 @@ public class Soul : MonoBehaviour
         
         Vector2 observerPosition = transform.position;
         Vector2 targetPosition = target.transform.position;
-
-        // var hit = Physics2D.Raycast(observerPosition, Vector2.right, 2.5f, obstacleLayers);
-        //
-        // if (hit.collider != null)
-        //     return false;
-        
-        // Check line of sight
         var distanceToTarget = targetPosition - observerPosition;
         
         return Mathf.Abs(distanceToTarget.x) < sightRange.x && Mathf.Abs(distanceToTarget.y) < sightRange.y;
+    }
+
+    private bool IsPathValid()
+    {
+        return Petals.ModifiedTiles.Any(
+            vec => Math.Abs(Mathf.Round(vec.x) - Mathf.Round(transform.position.x)) < 0.001f);
     }
 
     // Select the closest player ghost (left or right) for the soul to follow or the portal if it is close enough
@@ -89,11 +86,11 @@ public class Soul : MonoBehaviour
             Type = "self"
         };
 
-        // If player game object is not defined, return an empty target
-        if (_player == null) 
+        // If player game object is not defined ore petals are not on floor 
+        if (Player == null || !IsPathValid()) 
             return closestTarget;
         
-        if (!IsTargetInView(_player, maximumDistanceToPlayer))
+        if (!IsTargetInView(Player, maximumDistanceToPlayer))
             return closestTarget;
         
         var position = transform.position;
@@ -119,20 +116,18 @@ public class Soul : MonoBehaviour
             var hitRight = Physics2D.Raycast(position, Vector2.right, 1.5f, obstacleLayers);
             var hitLeft = Physics2D.Raycast(position, Vector2.left, 1.5f, obstacleLayers);
 
-            var playerPosition = _player.transform.position;
+            var playerPosition = Player.transform.position;
             Vector2 directionToPlayer = (playerPosition - position).normalized;
 
             var hitPlayer = Physics2D.Raycast(position, directionToPlayer, 5f, playerLayers);
 
             if ((hitRight.collider != null || hitLeft.collider != null) && 
-                (hitPlayer.collider == null || hitPlayer.collider.gameObject != _player))
-            {
+                (hitPlayer.collider == null || hitPlayer.collider.gameObject != Player))
                 return closestTarget;
-            }
         }
         
-        var playerLeftGhost = _player.transform.Find("Left Ghost").gameObject; 
-        var playerRightGhost = _player.transform.Find("Right Ghost").gameObject;
+        var playerLeftGhost = Player.transform.Find("Left Ghost").gameObject; 
+        var playerRightGhost = Player.transform.Find("Right Ghost").gameObject;
         
         var distanceToPlayerLeftGhost = Vector2.Distance(position, playerLeftGhost.transform.position);
         var distanceToPlayerRightGhost = Vector2.Distance(position, playerRightGhost.transform.position);
@@ -178,14 +173,10 @@ public class Soul : MonoBehaviour
     private void FixedUpdate()
     {
         if (_path == null) // Check if there is no path to follow.
-        {
             return;
-        }
 
         if (_currentWaypoint >= _path.vectorPath.Count) // Check if the soul has reached the end of the path.
-        {
             return;
-        }
         
         // Calculate the direction and force needed to move towards the current waypoint
         var direction = ((Vector2)_path.vectorPath[_currentWaypoint] - _rb.position).normalized;
@@ -198,18 +189,14 @@ public class Soul : MonoBehaviour
         _rb.AddForce(force); // Apply the calculated force to move the soul
 
         if (distance < NextWaypointDistance) // Check if the soul has reached the current waypoint
-        {
             _currentWaypoint++; // Move to the next waypoint in the path
-        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // If soul collides with portal, destroy game object
         if (collision.gameObject.CompareTag("Portal"))
-        {
             Destroy(gameObject);
-        }
     }
 
     private float UpdateSpeedToTarget()

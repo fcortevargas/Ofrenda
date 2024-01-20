@@ -11,7 +11,8 @@ public class Petals : MonoBehaviour
     // Variables to hold the player's position and the target position on the tilemap
     private Vector3 _playerPosition;
     private Vector3Int _targetGridPosition;
-    private HashSet<Vector3Int> _modifiedTiles; // Stores positions of modified tiles
+    private HashSet<Vector3Int> _modifiedTiles;
+    public static HashSet<Vector3> ModifiedTiles { get; private set; }
 
     // Offset to adjust the player's Y position when converting to tilemap coordinates
     private const float PositionYOffset = 0.5f;
@@ -31,6 +32,7 @@ public class Petals : MonoBehaviour
         _grid = GameObject.Find("Grid");
         _surface = _grid.transform.Find("Surfaces").GetComponent<Tilemap>();
         _modifiedTiles = new HashSet<Vector3Int>();
+        ModifiedTiles = new HashSet<Vector3>();
     }
 
     private void GetPetalControlInput()
@@ -86,8 +88,10 @@ public class Petals : MonoBehaviour
             _surface.SetTileFlags(_targetGridPosition, TileFlags.None);
             // Change the color of the tile
             _surface.SetColor(_targetGridPosition, _orange);
-            // Add modified tile to the hash set
+            // Add modified tile to the hash set in the cell frame
             _modifiedTiles.Add(_targetGridPosition);
+            // Add modified tile to the hash set in the world frame
+            ModifiedTiles.Add(_surface.CellToWorld(_targetGridPosition));
         }
     }
     
@@ -97,6 +101,7 @@ public class Petals : MonoBehaviour
         {
             _surface.SetColor(_targetGridPosition, Color.white); // Resetting to default color
             _modifiedTiles.Remove(_targetGridPosition);
+            ModifiedTiles.Remove(_surface.CellToWorld(_targetGridPosition));
             _pickUpPetals = false;
         }
     }
@@ -110,6 +115,7 @@ public class Petals : MonoBehaviour
                 _surface.SetColor(position, Color.white); // Resetting to default color, change as needed
             }
             _modifiedTiles.Clear(); // Clear the list after resetting
+            ModifiedTiles.Clear();
             
             _pickUpAllPetals = false;
         }
