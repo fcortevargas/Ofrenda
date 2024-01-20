@@ -22,17 +22,17 @@ public class PlayerControl : MonoBehaviour
     [SerializeField] private Vector3 colliderOffset;
     #endregion
 
-    #region STATE VARIABLES
-    // Can the player move?
-    private static bool _canMove = true;
+    #region STATIC STATE PROPERTIES
     // Is the player on the ground?
-    private static bool _isOnGround;
+    public static bool IsOnGround { get; private set; }
+    // Can the player move?
+    private static bool CanMove => true;
     // Is the player turning?
-    private static bool _isTurning;
+    private static bool IsTurning { get; set; }
     // Can the player jump again?
-    private static bool _canJumpAgain;
+    private static bool CanJumpAgain { get; set; }
     // Is the player jumping?
-    private static bool _isJumping;
+    private static bool IsJumping { get; set; }
     #endregion
 
     #region MOVEMENT CONTROL CONSTANTS
@@ -105,15 +105,6 @@ public class PlayerControl : MonoBehaviour
     private bool _pressingJump;
     private float _horizontalInput;
     #endregion
-    
-    #region STATIC PROPERTIES
-    // Static properties for usage in other scripts
-    public static bool IsOnGround => _isOnGround;
-    public static bool CanMove => _canMove;
-    public static bool IsTurning => _isTurning;
-    public static bool CanJumpAgain => _canJumpAgain;
-    public static bool IsJumping => _isJumping;
-    #endregion
 
     private void Awake()
     {
@@ -123,7 +114,7 @@ public class PlayerControl : MonoBehaviour
     private void Update()
     {
         // Used to stop movement when the character is playing certain animations
-        if (!_canMove)
+        if (!CanMove)
         {
             _horizontalInput = 0;
             _pressedJump = false;
@@ -140,18 +131,11 @@ public class PlayerControl : MonoBehaviour
         }
 
         // Tells us that we are currently pressing a direction button
-        if (_horizontalInput != 0)
-        {
-            _pressingMove = true;
-        }
-        else
-        {
-            _pressingMove = false;
-        }
+        _pressingMove = _horizontalInput != 0;
 
         //Calculate's the character's desired velocity - which is the direction you are facing, multiplied by the character's maximum speed
         //Friction is not used in this game
-        _targetVelocity = new Vector2(_horizontalInput, 0f) * (MaxSpeed * (1 - Mathf.Lerp(0, Friction, Convert.ToSingle(_isTurning))));
+        _targetVelocity = new Vector2(_horizontalInput, 0f) * (MaxSpeed * (1 - Mathf.Lerp(0, Friction, Convert.ToSingle(IsTurning))));
 
         // Handle jump queuing for jump buffer assist
         HandleJumpBuffering();
@@ -165,7 +149,7 @@ public class PlayerControl : MonoBehaviour
         //// Set the gravity scale of the player's rigid body
         SetGravityScale();
 
-        _isOnGround = IsPlayerOnGround();
+        IsOnGround = IsPlayerOnGround();
 
         _velocity = _rigidbody2D.velocity;
 
@@ -189,9 +173,9 @@ public class PlayerControl : MonoBehaviour
     private void Run()
     {
         //Set our acceleration, deceleration, and turn speed stats, based on whether we're on the ground on in the air
-        float acceleration = _isOnGround ? MaxAcceleration : MaxAirAcceleration;
-        float deceleration = _isOnGround ? MaxDecceleration : MaxAirDeceleration;
-        float turnSpeed = _isOnGround ? MaxTurnSpeed : MaxAirTurnSpeed;
+        var acceleration = IsOnGround ? MaxAcceleration : MaxAirAcceleration;
+        var deceleration = IsOnGround ? MaxDecceleration : MaxAirDeceleration;
+        var turnSpeed = IsOnGround ? MaxTurnSpeed : MaxAirTurnSpeed;
 
         float maxSpeedChange;
 
@@ -201,21 +185,21 @@ public class PlayerControl : MonoBehaviour
             if (Math.Abs(Mathf.Sign(_horizontalInput) - Mathf.Sign(_velocity.x)) > Tolerance)
             {
                 maxSpeedChange = turnSpeed * Time.deltaTime;
-                _isTurning = true;
+                IsTurning = true;
             }
             else
             {
                 //If they match, it means we're simply running along and so should use the acceleration stat
                 maxSpeedChange = acceleration * Time.deltaTime;
-                _isTurning = false;
+                IsTurning = false;
             }
 
             // Flip the player
-            if (_horizontalInput > 0 && !_isTurning)
+            if (_horizontalInput > 0 && !IsTurning)
             {
                 transform.localScale = new Vector3(1, 1, 1);
             }
-            if (_horizontalInput < 0 && !_isTurning)
+            if (_horizontalInput < 0 && !IsTurning)
             {
                 transform.localScale = new Vector3(-1, 1, 1);
             }
@@ -235,14 +219,14 @@ public class PlayerControl : MonoBehaviour
 
     private void Jump()
     {
-        if (_isOnGround || (_coyoteTimeCounter > 0.03f && _coyoteTimeCounter < CoyoteTime) || _canJumpAgain)
+        if (IsOnGround || (_coyoteTimeCounter > 0.03f && _coyoteTimeCounter < CoyoteTime) || CanJumpAgain)
         {
             _pressedJump = false;
             _jumpBufferCounter = 0;
             _coyoteTimeCounter = 0;
 
             //If we have double jump on, allow us to jump again (but only once)
-            _canJumpAgain = MaxNumberJumps == 1 && !_canJumpAgain;
+            CanJumpAgain = MaxNumberJumps == 1 && !CanJumpAgain;
 
             // Determine the power of the jump, based on our gravity and stats
             _jumpSpeed = Mathf.Sqrt(-2f * Physics2D.gravity.y * _rigidbody2D.gravityScale * MaxJumpHeight);
@@ -260,7 +244,7 @@ public class PlayerControl : MonoBehaviour
 
             //Apply the new jumpSpeed to the velocity. It will be sent to the Rigidbody in FixedUpdate;
             _velocity.y += _jumpSpeed;
-            _isJumping = true;
+            IsJumping = true;
         }
 
         if (jumpBuffer == 0)
@@ -281,7 +265,7 @@ public class PlayerControl : MonoBehaviour
         // If going up...
         if (_rigidbody2D.velocity.y > 0.01f)
         {
-            if (_isOnGround)
+            if (IsOnGround)
             {
                 // Don't change it if player is standing on something (such as a moving platform)
                 _gravityMultiplier = DefaultGravityScale;
@@ -292,7 +276,7 @@ public class PlayerControl : MonoBehaviour
                 if (enableVariableJumpHeight)
                 {
                     // Apply upward multiplier if player is rising and holding jump
-                    if (_pressingJump && _isJumping)
+                    if (_pressingJump && IsJumping)
                     {
                         _gravityMultiplier = UpwardGravityMultiplier;
                     }
@@ -312,24 +296,17 @@ public class PlayerControl : MonoBehaviour
         //Else if going down...
         else if (_rigidbody2D.velocity.y < -0.01f)
         {
-            if (_isOnGround)
             // Don't change it if player is standing on something (such as a moving platform)
-            {
-                _gravityMultiplier = DefaultGravityScale;
-            }
-            else
-            {
+            _gravityMultiplier = IsOnGround ? DefaultGravityScale :
                 // Otherwise, apply the downward gravity multiplier
-                _gravityMultiplier = DownwardGravityMultiplier;
-            }
-
+                DownwardGravityMultiplier;
         }
         //Else not moving vertically at all
         else
         {
-            if (_isOnGround)
+            if (IsOnGround)
             {
-                _isJumping = false;
+                IsJumping = false;
             }
 
             _gravityMultiplier = DefaultGravityScale;
@@ -343,29 +320,23 @@ public class PlayerControl : MonoBehaviour
     private void HandleJumpBuffering()
     {
         //Jump buffer allows us to queue up a jump, which will play when we next hit the ground
-        if (jumpBuffer > 0)
-        {
-            //Instead of immediately turning off _pressedJump, start counting up...
-            //All the while, the Jump function will repeatedly be fired off
-            if (_pressedJump)
-            {
-                _jumpBufferCounter += Time.deltaTime;
+        if (!(jumpBuffer > 0)) return;
+        //Instead of immediately turning off _pressedJump, start counting up...
+        //All the while, the Jump function will repeatedly be fired off
+        if (!_pressedJump) return;
+        _jumpBufferCounter += Time.deltaTime;
 
-                if (_jumpBufferCounter > jumpBuffer)
-                {
-                    //If time exceeds the jump buffer, turn off _pressedJump
-                    _pressedJump = false;
-                    _jumpBufferCounter = 0;
-                }
-            }
-        }
+        if (!(_jumpBufferCounter > jumpBuffer)) return;
+        //If time exceeds the jump buffer, turn off _pressedJump
+        _pressedJump = false;
+        _jumpBufferCounter = 0;
     }
 
     private void HandleCoyoteJumping()
     {
         //If we're not on the ground and we're not currently jumping, that means we've stepped off the edge of a platform.
         //So, start the coyote time counter...
-        if (!_isJumping && !_isOnGround)
+        if (!IsJumping && !IsOnGround)
         {
             _coyoteTimeCounter += Time.deltaTime;
         }
@@ -378,15 +349,15 @@ public class PlayerControl : MonoBehaviour
 
     private bool IsPlayerOnGround()
     {
-        Vector3 origin = transform.position + new Vector3(0, 0.5f, 0);
+        var origin = transform.position + new Vector3(0, 0.5f, 0);
         return Physics2D.Raycast(origin + colliderOffset, Vector2.down, groundThreshold, groundLayers) || Physics2D.Raycast(origin - colliderOffset, Vector2.down, groundThreshold, groundLayers);
     }
 
     private void OnDrawGizmos()
     {
         //Draw the ground colliders on screen for debug purposes
-        Vector3 origin = transform.position + new Vector3(0, 0.5f, 0);
-        if (_isOnGround) { Gizmos.color = Color.green; } else { Gizmos.color = Color.red; }
+        var origin = transform.position + new Vector3(0, 0.5f, 0);
+        Gizmos.color = IsOnGround ? Color.green : Color.red;
         Gizmos.DrawLine(origin + colliderOffset, origin + colliderOffset + Vector3.down * groundThreshold);
         Gizmos.DrawLine(origin - colliderOffset, origin - colliderOffset + Vector3.down * groundThreshold);
     }
