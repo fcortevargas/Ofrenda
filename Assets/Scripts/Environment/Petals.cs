@@ -11,8 +11,6 @@ public class Petals : MonoBehaviour
     // Variables to hold the player's position and the target position on the tilemap
     private Vector3 _playerPosition;
     private Vector3Int _targetGridPosition;
-    private HashSet<Vector3Int> _modifiedTiles;
-    public static HashSet<Vector3> ModifiedTiles { get; private set; }
 
     // Offset to adjust the player's Y position when converting to tilemap coordinates
     private const float PositionYOffset = 0.5f;
@@ -31,8 +29,6 @@ public class Petals : MonoBehaviour
         // Finding the grid GameObject and getting the Tilemap component from its child named "Surface"
         _grid = GameObject.Find("Grid");
         _surface = _grid.transform.Find("Surfaces").GetComponent<Tilemap>();
-        _modifiedTiles = new HashSet<Vector3Int>();
-        ModifiedTiles = new HashSet<Vector3>();
     }
 
     private void GetPetalControlInput()
@@ -42,7 +38,7 @@ public class Petals : MonoBehaviour
             _dropPetals = !_dropPetals;
         }
 
-        if (Input.GetKey(KeyCode.F) && _modifiedTiles.Count > 0)
+        if (Input.GetKey(KeyCode.F) && GameManager.Instance.ModifiedCellTiles.Count > 0)
         {
             _dropPetals = false;
             
@@ -89,9 +85,9 @@ public class Petals : MonoBehaviour
             // Change the color of the tile
             _surface.SetColor(_targetGridPosition, _orange);
             // Add modified tile to the hash set in the cell frame
-            _modifiedTiles.Add(_targetGridPosition);
+            GameManager.Instance.ModifiedCellTiles.Add(_targetGridPosition);
             // Add modified tile to the hash set in the world frame
-            ModifiedTiles.Add(_surface.CellToWorld(_targetGridPosition));
+            GameManager.Instance.ModifiedWorldTiles.Add(_surface.CellToWorld(_targetGridPosition));
         }
     }
     
@@ -100,8 +96,8 @@ public class Petals : MonoBehaviour
         if (_pickUpPetals && _surface.HasTile(_targetGridPosition))
         {
             _surface.SetColor(_targetGridPosition, Color.white); // Resetting to default color
-            _modifiedTiles.Remove(_targetGridPosition);
-            ModifiedTiles.Remove(_surface.CellToWorld(_targetGridPosition));
+            GameManager.Instance.ModifiedCellTiles.Remove(_targetGridPosition);
+            GameManager.Instance.ModifiedWorldTiles.Remove(_surface.CellToWorld(_targetGridPosition));
             _pickUpPetals = false;
         }
     }
@@ -110,12 +106,12 @@ public class Petals : MonoBehaviour
     {
         if (_pickUpAllPetals)
         {
-            foreach (var position in _modifiedTiles)
+            foreach (var position in GameManager.Instance.ModifiedCellTiles)
             {
                 _surface.SetColor(position, Color.white); // Resetting to default color, change as needed
             }
-            _modifiedTiles.Clear(); // Clear the list after resetting
-            ModifiedTiles.Clear();
+            GameManager.Instance.ModifiedCellTiles.Clear(); // Clear the list after resetting
+            GameManager.Instance.ModifiedWorldTiles.Clear();
             
             _pickUpAllPetals = false;
         }

@@ -71,7 +71,7 @@ public class Soul : MonoBehaviour
 
     private bool IsPathValid()
     {
-        return Petals.ModifiedTiles.Any(
+        return GameManager.Instance.ModifiedWorldTiles.Any(
             vec => Math.Abs(Mathf.Round(vec.x) - Mathf.Round(transform.position.x)) < 0.001f);
     }
 
