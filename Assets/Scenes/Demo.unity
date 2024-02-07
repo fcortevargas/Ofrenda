@@ -68885,6 +68885,50 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1245488765177293003, guid: c50d3263ed4da46e183dfe40580014d1, type: 3}
   m_PrefabInstance: {fileID: 1278231341}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1260724943
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1260724945}
+  - component: {fileID: 1260724944}
+  m_Layer: 0
+  m_Name: Game Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1260724944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1260724943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d2f517f0a94a4eca85b553e6e8d7031, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1260724945
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1260724943}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1271997628 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1245488765177293003, guid: c50d3263ed4da46e183dfe40580014d1, type: 3}
@@ -69597,7 +69641,7 @@ MonoBehaviour:
   portal: {fileID: 909807747}
   maximumDistanceToPlayer: {x: 20, y: 8}
   maximumDistanceToPortal: {x: 20, y: 1}
-  speed: 0
+  speed: 250
   obstacleLayers:
     serializedVersion: 2
     m_Bits: 1024
@@ -75089,6 +75133,7 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 1260724945}
   - {fileID: 1357553733}
   - {fileID: 585971468}
   - {fileID: 677962508}

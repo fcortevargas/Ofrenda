@@ -1,210 +1,248 @@
 using System;
 using System.Linq;
-using UnityEngine;
 using Pathfinding;
-using Unity.VisualScripting;
-using UnityEngine.Serialization;
+using UnityEngine;
 
-public class Soul : MonoBehaviour
+namespace Soul
 {
-    // The player GameObject that the soul is following
-
-    public static GameObject Player { get; set; }
-
-    // The portal GameObject that the soul will go to if close enough
-    public GameObject portal; 
-
-    // The minimum distance to consider a waypoint as reached
-    private const float NextWaypointDistance = 1f; 
-    // The distance threshold to trigger the faster speed in case the soul is either close enough to the portal
-    // or far enough from the player
-    private const float FastSpeedDistanceThreshold = 5f; 
-    // The maximum distances in the x and y direction in which the soul can "see" the player
-    public Vector2 maximumDistanceToPlayer = new(20f, 8f);
-    // The maximum distances in the x and y direction in which the soul can "see" the portal
-    public Vector2 maximumDistanceToPortal = new(20f, 5f);
-
-    private const float NormalSpeed = 250; // The normal movement speed of the soul
-    private const float FastSpeed = 400; // The faster movement speed of the soul
-
-    [SerializeField] private float speed;
-
-    private Path _path; // The calculated path for the soul to follow
-    private int _currentWaypoint; // The index of the current waypoint in the path
-    // [SerializeField] private bool reachedEndOfPath = false; // Indicates if the soul has reached the end of its path
-
-    private Seeker _seeker; // A component for pathfinding calculations
-    private Rigidbody2D _rb; // The Rigidbody2D component for the soul's physics
-
-    private Target _target;
-
-    public LayerMask obstacleLayers;
-    public LayerMask playerLayers;
-
-    private struct Target
+    public class Soul : MonoBehaviour
     {
-        public Transform Transform;
-        public float Distance;
-        public string Type;
-    }
+        // The player GameObject that the soul is following
+        public static GameObject Player { get; set; }
+
+        // The portal GameObject that the soul will go to if close enough
+        public GameObject portal; 
+
+        // The minimum distance to consider a waypoint as reached
+        private const float NextWaypointDistance = 1f; 
+        // The maximum distances in the x and y direction in which the soul can "see" the player
+        public Vector2 maximumDistanceToPlayer = new(20f, 8f);
+        // The maximum distances in the x and y direction in which the soul can "see" the portal
+        public Vector2 maximumDistanceToPortal = new(20f, 5f);
+
+        [SerializeField] private float speed = 250;
+
+        private Path _path; // The calculated path for the soul to follow
+        private int _currentWaypoint; // The index of the current waypoint in the path
+        // [SerializeField] private bool reachedEndOfPath = false; // Indicates if the soul has reached the end of its path
+
+        private Seeker _seeker; // A component for pathfinding calculations
+        private Rigidbody2D _rb; // The rigid body component for the soul's physics
+
+        private Target _target;
+
+        public LayerMask obstacleLayers;
+        public LayerMask playerLayers;
+
+        public class Target
+        {
+            public Transform Transform { get; set; }
+            public float Distance { get; set; }
+            public string Type { get; set; }
+
+            // Static property for an invalid target
+            public static Target Invalid => new() { Type = "Invalid" };
+
+            // Method to check if the target is valid
+            public bool IsValid => Type != "Invalid";
+        }
     
-    private void Awake()
-    {
-        _seeker = GetComponent<Seeker>(); // Get the Seeker component attached to this GameObject
-        _rb = GetComponent<Rigidbody2D>(); // Get the Rigidbody2D component attached to this GameObject
-
-        // Call UpdatePath method repeatedly with a delay of 0.2 seconds
-        InvokeRepeating(nameof(UpdatePath), 0f, .2f);
-    }
-
-    private bool IsTargetInView(GameObject target, Vector2 sightRange)
-    {
-        if (target == null)
-            return false;
-        
-        Vector2 observerPosition = transform.position;
-        Vector2 targetPosition = target.transform.position;
-        var distanceToTarget = targetPosition - observerPosition;
-        
-        return Mathf.Abs(distanceToTarget.x) < sightRange.x && Mathf.Abs(distanceToTarget.y) < sightRange.y;
-    }
-
-    private bool IsPathValid()
-    {
-        return GameManager.Instance.ModifiedWorldTiles.Any(
-            vec => Math.Abs(Mathf.Round(vec.x) - Mathf.Round(transform.position.x)) < 0.001f);
-    }
-
-    // Select the closest player ghost (left or right) for the soul to follow or the portal if it is close enough
-    private Target SelectClosestTarget()
-    {
-        // Default closest target is the soul itself
-        Target closestTarget = new()
+        private void Awake()
         {
-            Transform = transform,
-            Distance = 0f,
-            Type = "self"
-        };
+            _seeker = GetComponent<Seeker>(); // Get the Seeker component attached to this GameObject
+            _rb = GetComponent<Rigidbody2D>(); // Get the Rigidbody2D component attached to this GameObject
 
-        // If player game object is not defined ore petals are not on floor 
-        if (Player == null || !IsPathValid()) 
-            return closestTarget;
-        
-        if (!IsTargetInView(Player, maximumDistanceToPlayer))
-            return closestTarget;
-        
-        var position = transform.position;
-        
-        var obstacle = GameObject.Find("Obstacles");
+            // Call UpdatePath method repeatedly with a delay of 0.2 seconds
+            InvokeRepeating(nameof(UpdatePath), 0f, .2f);
+        }
 
-        if (obstacle != null)
+        private bool IsTargetInView(GameObject target, Vector2 sightRange)
         {
-            var obstacleLeftGhost = obstacle.transform.Find("Left Ghost").gameObject; 
-            var obstacleRightGhost = obstacle.transform.Find("Right Ghost").gameObject;
+            if (target == null)
+                return false;
 
-            var distanceToObstacleLeftGhost = Vector2.Distance(position, obstacleLeftGhost.transform.position);
-            var distanceToObstacleRightGhost = Vector2.Distance(position, obstacleRightGhost.transform.position);
-            var minObstacleGhostDistance = Math.Min(distanceToObstacleLeftGhost, distanceToObstacleRightGhost);
-            var closestObstacleGhost = distanceToObstacleLeftGhost < distanceToObstacleRightGhost
-                ? obstacleLeftGhost
-                : obstacleRightGhost;
-        
-            closestTarget.Transform = closestObstacleGhost.transform;
-            closestTarget.Distance = minObstacleGhostDistance;
-            closestTarget.Type = "obstacle";
+            Vector2 observerPosition = transform.position;
+            Vector2 targetPosition = target.transform.position;
+            var distanceToTarget = targetPosition - observerPosition;
 
-            var hitRight = Physics2D.Raycast(position, Vector2.right, 1.5f, obstacleLayers);
-            var hitLeft = Physics2D.Raycast(position, Vector2.left, 1.5f, obstacleLayers);
+            // Check if the target is within the sight range along both x and y axes
+            return Mathf.Abs(distanceToTarget.x) <= sightRange.x && Mathf.Abs(distanceToTarget.y) <= sightRange.y;
+        }
 
-            var playerPosition = Player.transform.position;
-            Vector2 directionToPlayer = (playerPosition - position).normalized;
+        private bool IsPathValid()
+        {
+            var currentPosition = transform.position;
+            var roundedCurrentPositionX = Mathf.Round(currentPosition.x);
+            var velocityX = _rb.velocity.x;
 
-            var hitPlayer = Physics2D.Raycast(position, directionToPlayer, 5f, playerLayers);
+            var isTileValidPosX = GameManager.Instance.ModifiedWorldTiles.Any(
+                vec => Mathf.Approximately(vec.x, roundedCurrentPositionX));
 
-            if ((hitRight.collider != null || hitLeft.collider != null) && 
-                (hitPlayer.collider == null || hitPlayer.collider.gameObject != Player))
-                return closestTarget;
+            // var isTileValidPosY = Mathf.Abs(Player.transform.position.y + 0.6f - currentPosition.y) < 5f;
+            //
+            // var isTileValidVelX = GameManager.Instance.ModifiedWorldTiles.Any(vec =>
+            // {
+            //     var targetX = roundedCurrentPositionX + Math.Sign(velocityX);
+            //     return Mathf.Approximately(vec.x, targetX);
+            // });
+
+            // return isTileValidPosX && isTileValidVelX && isTileValidPosY;
+            return isTileValidPosX;
         }
         
-        var playerLeftGhost = Player.transform.Find("Left Ghost").gameObject; 
-        var playerRightGhost = Player.transform.Find("Right Ghost").gameObject;
+        private Target CreateSelfTarget()
+        {
+            return new Target
+            {
+                Transform = transform,
+                Distance = 0f,
+                Type = "self"
+            };
+        }
         
-        var distanceToPlayerLeftGhost = Vector2.Distance(position, playerLeftGhost.transform.position);
-        var distanceToPlayerRightGhost = Vector2.Distance(position, playerRightGhost.transform.position);
-        var minPlayerGhostDistance = Math.Min(distanceToPlayerLeftGhost, distanceToPlayerRightGhost);
-        var closestPlayerGhost =
-            distanceToPlayerLeftGhost < distanceToPlayerRightGhost ? playerLeftGhost : playerRightGhost;
+        private Target GetClosestObstacleGhostTarget()
+        {
+            var position = transform.position;
+            var obstacle = GameObject.Find("Obstacles");
+
+            if (obstacle == null)
+            {
+                Debug.LogWarning("No obstacles found on the scene.");
+                return Target.Invalid; // Return an invalid target
+            }
+            
+            var leftGhost = obstacle.transform.Find("Left Ghost").gameObject;
+            var rightGhost = obstacle.transform.Find("Right Ghost").gameObject;
+
+            var distanceToLeft = Vector2.Distance(position, leftGhost.transform.position);
+            var distanceToRight = Vector2.Distance(position, rightGhost.transform.position);
+
+            var isLeftCloser = distanceToLeft < distanceToRight;
+
+            var hit = Physics2D.Raycast(position, isLeftCloser ? Vector2.right : Vector2.left, 1.5f, obstacleLayers);
+
+            if (hit.collider == null)
+            {
+                return Target.Invalid;
+            }
+            
+            return new Target
+            {
+                Transform = isLeftCloser ? leftGhost.transform : rightGhost.transform,
+                Distance = isLeftCloser ? distanceToLeft : distanceToRight,
+                Type = "obstacle"
+            };
+        }
         
-        // Determine the closest player ghost based on distances
-        closestTarget.Transform = closestPlayerGhost.transform;
-        closestTarget.Distance = minPlayerGhostDistance;
-        closestTarget.Type = "player";
+        private Target GetClosestPlayerGhostTarget()
+        {
+            var position = transform.position;
+            
+            var leftGhost = Player.transform.Find("Left Ghost").gameObject;
+            var rightGhost = Player.transform.Find("Right Ghost").gameObject;
+
+            var distanceToLeft = Vector2.Distance(position, leftGhost.transform.position);
+            var distanceToRight = Vector2.Distance(position, rightGhost.transform.position);
+
+            return new Target
+            {
+                Transform = distanceToLeft < distanceToRight ? leftGhost.transform : rightGhost.transform,
+                Distance = Math.Min(distanceToLeft, distanceToRight),
+                Type = "player"
+            };
+        }
         
-        // If the portal is not closer than a certain distance threshold and is not in view, go towards player
-        if (!IsTargetInView(portal, maximumDistanceToPortal)) 
-            return closestTarget; 
-        
-        var distanceToPortal = Vector2.Distance(transform.position, portal.transform.position);
-        
-        closestTarget.Transform = portal.transform;
-        closestTarget.Distance = distanceToPortal;
-        closestTarget.Type = "portal";
+        private Target CreatePortalTarget()
+        {
+            var distanceToPortal = Vector2.Distance(transform.position, portal.transform.position);
 
-        return closestTarget;
-    }
+            return new Target
+            {
+                Transform = portal.transform,
+                Distance = distanceToPortal,
+                Type = "portal"
+            };
+        }
 
-    // Update the path for the soul to follow
-    private void UpdatePath()
-    {
-        _target = SelectClosestTarget(); // Select the closest target
+        // Select the closest player ghost (left or right) for the soul to follow or the portal if it is close enough
+        private Target SelectTarget()
+        {
+            if (Player == null || !IsPathValid() || !IsTargetInView(Player, maximumDistanceToPlayer))
+            {
+                return CreateSelfTarget();
+            }
 
-        if (_seeker.IsDone()) // Check if the Seeker component is not currently calculating a path
-            _seeker.StartPath(_rb.position, _target.Transform.position, OnPathComplete); // Start calculating a path to the player
-    }
+            var closestObstacleTarget = GetClosestObstacleGhostTarget();
+            if (closestObstacleTarget.IsValid)
+            {
+                // Perform a ray cast towards the player to check if they are now in view
+                var position = transform.position;
+                Vector2 directionToPlayer = (Player.transform.position - position).normalized;
+                var hit = Physics2D.Raycast(position, directionToPlayer, maximumDistanceToPlayer.magnitude, playerLayers);
 
-    // Callback function called when path calculation is complete
-    private void OnPathComplete(Path p)
-    {
-        if (p.error) return; // Check if there are no errors in the calculated path
-        _path = p; // Store the calculated path
-        _currentWaypoint = 0; // Reset the current waypoint index to the start
-    }
+                // If the ray cast hits the player, it means the player is in view and should be considered as the closest target
+                if (hit.collider != null && hit.collider.gameObject == Player)
+                {
+                    return GetClosestPlayerGhostTarget(); // Recalculate and return the player as the closest target
+                }
 
-    private void FixedUpdate()
-    {
-        if (_path == null) // Check if there is no path to follow.
-            return;
+                // Otherwise, return the previously selected obstacle target
+                return closestObstacleTarget;
+            }
 
-        if (_currentWaypoint >= _path.vectorPath.Count) // Check if the soul has reached the end of the path.
-            return;
-        
-        // Calculate the direction and force needed to move towards the current waypoint
-        var direction = ((Vector2)_path.vectorPath[_currentWaypoint] - _rb.position).normalized;
-        speed = UpdateSpeedToTarget();
+            // If no obstacle target was selected or it's invalid, proceed with the rest of the target selection logic...
+            var closestPlayerGhostTarget = GetClosestPlayerGhostTarget();
+            if (closestPlayerGhostTarget.IsValid && !IsTargetInView(portal, maximumDistanceToPortal))
+            {
+                return closestPlayerGhostTarget;
+            }
 
-        var force = speed * Time.deltaTime * direction;
+            return CreatePortalTarget();
+        }
 
-        var distance = Vector2.Distance(_rb.position, _path.vectorPath[_currentWaypoint]);
 
-        _rb.AddForce(force); // Apply the calculated force to move the soul
+        // Update the path for the soul to follow
+        private void UpdatePath()
+        {
+            _target = SelectTarget(); // Select the closest target based on current conditions
 
-        if (distance < NextWaypointDistance) // Check if the soul has reached the current waypoint
-            _currentWaypoint++; // Move to the next waypoint in the path
-    }
+            if (_seeker.IsDone()) // Ensure the previous path calculation is complete
+            {
+                _seeker.StartPath(_rb.position, _target.Transform.position, OnPathComplete); // Request a new path to the target
+            }
+        }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        // If soul collides with portal, destroy game object
-        if (collision.gameObject.CompareTag("Portal"))
-            Destroy(gameObject);
-    }
+        // Callback function called when path calculation is complete
+        private void OnPathComplete(Path path)
+        {
+            // Ensure there are no errors with the path
+            if (path.error) 
+                return; 
+            _path = path; // Update the soul's path
+            _currentWaypoint = 0; // Reset waypoint index for new path
+        }
 
-    private float UpdateSpeedToTarget()
-    {
-        // Return fast speed if the player is the closest target and the soul is far away, or if the portal is close
-        return _target is { Type: "player", Distance: > FastSpeedDistanceThreshold } or
-            { Type: "portal", Distance: < FastSpeedDistanceThreshold }
-            ? FastSpeed
-            : NormalSpeed;
+        private void FixedUpdate()
+        {
+            if (_path == null || _currentWaypoint >= _path.vectorPath.Count) return; // Check for a valid path and waypoints
+
+            var direction = ((Vector2)_path.vectorPath[_currentWaypoint] - _rb.position).normalized; // Direction to the next waypoint
+            var force = direction * (speed * Time.fixedDeltaTime); // Calculate force to apply based on speed and direction
+
+            _rb.AddForce(force); // Apply movement force
+
+            // Check if the soul has reached the current waypoint
+            if (Vector2.Distance(_rb.position, _path.vectorPath[_currentWaypoint]) < NextWaypointDistance)
+            {
+                _currentWaypoint++; // Move to the next waypoint
+            }
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            // Check for collision with the portal to trigger some action, like ending the level or teleporting the soul
+            if (collision.gameObject.CompareTag("Portal"))
+                Destroy(gameObject);
+        }
     }
 }

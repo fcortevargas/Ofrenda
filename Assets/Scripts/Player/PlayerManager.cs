@@ -61,7 +61,7 @@ public class PlayerManager : MonoBehaviour
         
         if (isXolo)
         {
-            Soul.Player = player;
+            Soul.Soul.Player = player;
         }
     }
 }
